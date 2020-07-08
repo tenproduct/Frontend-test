@@ -1,6 +1,5 @@
 # Frontend Coding Challenge
 
-## Task 1:
 Create an app using angular and Angular Material to search and display Star Wars characters using [Swapi](https://swapi.co/)
 ![Mock Up design](https://i.imgur.com/RA0lZtYg.png, "Mock Up design")
 
@@ -19,15 +18,11 @@ On each card in the results include an image `assets/mock-image.png` and display
 
 When the user clicks load more it should append the next set of results
 
-When a user types a character name and clicks search it should call `https://swapi.co/api/people/?search=` and update the results.
+When a user types a character name and clicks search, it should call `https://swapi.co/api/people/?search=` and update the results.
 
-## Task 2:
-Fizz Buzz:
+The page should be responsive, ensure the layout looks respectable on mobile and tablet viewpoints.
 
-Write a short program including unit tests that prints each number from 1 to 100 using console.log.
-For each multiple of 3, print "Fizz" instead of the number.
-For each multiple of 5, print "Buzz" instead of the number.
-For numbers which are multiples of both 3 and 5, print "FizzBuzz" instead of the number.
+Include unit tests
 
 ---
 
