@@ -7,7 +7,7 @@
 
 ---
 
-## Create an app using angular and Angular Material to search and display Star Wars characters using [Swapi](https://swapi.dev/)
+## Create an app using Angular and Angular Material to search and display Star Wars characters using [Swapi](https://swapi.dev/)
 
 ![Mock Up design](https://i.imgur.com/RA0lZtYg.png, "Mock Up design")
 
