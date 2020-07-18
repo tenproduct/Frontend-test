@@ -1,24 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
-import { concatMap } from 'rxjs/operators';
-import { EMPTY } from 'rxjs';
-import { StarWarsActionTypes, StarWarsActions } from './star-wars.actions';
-
+import { catchError, map, switchMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { StarWarsActions, StarWarsActionTypes } from './star-wars.actions';
+import { StarWarsStateActions } from './index';
+import { StarWarsService } from '../services/star-wars.service';
+import { Character } from '../interfaces/character';
 
 @Injectable()
 export class StarWarsEffects {
 
-
   @Effect()
-  loadStarWarss$ = this.actions$.pipe(
-    ofType(StarWarsActionTypes.LoadStarWarss),
-    /** An EMPTY observable only emits completion. Replace with your own observable API request */
-    concatMap(() => EMPTY)
-  );
+  loadCharacters$: Observable<StarWarsStateActions.LoadLoadCharactersSuccess | StarWarsStateActions.LoadLoadCharactersFailure> =
+    this.actions$.pipe(
+      ofType<StarWarsStateActions.LoadLoadCharacters>(StarWarsActionTypes.LoadLoadCharacters),
+      switchMap(() => this.service.loadCharacters().pipe(
+        map((characters: Character[]) => new StarWarsStateActions.LoadLoadCharactersSuccess(characters)),
+        catchError(() => of(new StarWarsStateActions.LoadLoadCharactersFailure()))
+      ))
+    );
 
-
-  constructor(private actions$: Actions<StarWarsActions>) {
+  constructor(private actions$: Actions<StarWarsActions>,
+              private service: StarWarsService) {
   }
 
 }

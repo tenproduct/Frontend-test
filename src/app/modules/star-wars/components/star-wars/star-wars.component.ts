@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { StarWarsReducer, StarWarsStateActions } from '../../state';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-star-wars',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StarWarsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: Store<StarWarsReducer.State>) {
+  }
 
   ngOnInit(): void {
+    this.store.dispatch(new StarWarsStateActions.LoadLoadCharacters());
   }
 
 }
