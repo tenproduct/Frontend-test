@@ -1,10 +1,13 @@
 import { Action } from '@ngrx/store';
 import { Character } from '../interfaces/character';
+import { SortOption } from '../enums/sort-option';
 
 export enum StarWarsActionTypes {
-  LoadLoadCharacters = '[LoadCharacters] Load LoadCharacters',
-  LoadLoadCharactersSuccess = '[LoadCharacters] Load LoadCharacters Success',
-  LoadLoadCharactersFailure = '[LoadCharacters] Load LoadCharacters Failure',
+  LoadLoadCharacters = '[StarWarsActions] Load LoadCharacters',
+  LoadLoadCharactersSuccess = '[StarWarsActions] Load LoadCharacters Success',
+  LoadLoadCharactersFailure = '[StarWarsActions] Load LoadCharacters Failure',
+
+  ChangeSortOption = '[StarWarsActions] ChangeSortOption'
 }
 
 export class LoadLoadCharacters implements Action {
@@ -25,4 +28,12 @@ export class LoadLoadCharactersFailure implements Action {
   }
 }
 
-export type StarWarsActions = LoadLoadCharacters | LoadLoadCharactersSuccess | LoadLoadCharactersFailure;
+export class ChangeSortOption implements Action {
+  readonly type = StarWarsActionTypes.ChangeSortOption;
+
+  constructor(public option: SortOption) {
+  }
+}
+
+export type StarWarsActions = LoadLoadCharacters | LoadLoadCharactersSuccess | LoadLoadCharactersFailure |
+  ChangeSortOption;

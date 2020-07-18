@@ -1,0 +1,9 @@
+<mat-form-field appearance="fill">
+  <mat-label>Sort by</mat-label>
+  <mat-select [value]="sortOption$ | async" (selectionChange)="sortCharacters($event.value)">
+    <mat-option [value]="SortOption.A_Z">A - Z</mat-option>
+    <mat-option [value]="SortOption.Z_A">Z - A</mat-option>
+    <mat-option [value]="SortOption.Male">Male</mat-option>
+    <mat-option [value]="SortOption.Female">Female</mat-option>
+  </mat-select>
+</mat-form-field>
