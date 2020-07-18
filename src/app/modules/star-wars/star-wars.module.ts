@@ -1,18 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { MatCardModule, MatFormFieldModule, MatSelectModule } from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSelectModule } from '@angular/material';
 
 import { StarWarsRoutingModule } from './star-wars-routing.module';
-import { StarWarsComponent } from './components/star-wars/star-wars.component';
 import * as fromStarWars from './state/star-wars.reducer';
 import { StarWarsEffects } from './state/star-wars.effects';
+
 import { StarWarsService } from './services/star-wars.service';
+
+import { StarWarsComponent } from './components/star-wars/star-wars.component';
 import { CharacterCardComponent } from './components/character-card/character-card.component';
 import { CharacterSortComponent } from './components/character-sort/character-sort.component';
+import { CharacterSearchComponent } from './components/character-serach/character-serach.component';
 
 @NgModule({
   imports: [
@@ -24,10 +28,14 @@ import { CharacterSortComponent } from './components/character-sort/character-so
       fromStarWars.reducer
     ),
     EffectsModule.forFeature([StarWarsEffects]),
-    MatCardModule,
+    FormsModule,
     FlexLayoutModule,
+    MatCardModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [
     StarWarsService
@@ -35,7 +43,8 @@ import { CharacterSortComponent } from './components/character-sort/character-so
   declarations: [
     StarWarsComponent,
     CharacterCardComponent,
-    CharacterSortComponent
+    CharacterSortComponent,
+    CharacterSearchComponent
   ]
 })
 export class StarWarsModule {

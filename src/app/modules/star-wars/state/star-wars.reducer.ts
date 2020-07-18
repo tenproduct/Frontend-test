@@ -18,7 +18,7 @@ export const initialState: State = {
 export function reducer(state = initialState, action: StarWarsActions): State {
   switch (action.type) {
 
-    case StarWarsActionTypes.LoadLoadCharactersSuccess:
+    case StarWarsActionTypes.LoadCharactersSuccess:
       return {
         ...state,
         characters: (action as StarWarsStateActions.LoadLoadCharactersSuccess).characters

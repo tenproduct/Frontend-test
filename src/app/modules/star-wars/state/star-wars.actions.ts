@@ -3,26 +3,29 @@ import { Character } from '../interfaces/character';
 import { SortOption } from '../enums/sort-option';
 
 export enum StarWarsActionTypes {
-  LoadLoadCharacters = '[StarWarsActions] Load LoadCharacters',
-  LoadLoadCharactersSuccess = '[StarWarsActions] Load LoadCharacters Success',
-  LoadLoadCharactersFailure = '[StarWarsActions] Load LoadCharacters Failure',
+  LoadCharacters = '[StarWarsActions] Load LoadCharacters',
+  LoadCharactersSuccess = '[StarWarsActions] Load LoadCharacters Success',
+  LoadCharactersFailure = '[StarWarsActions] Load LoadCharacters Failure',
 
   ChangeSortOption = '[StarWarsActions] ChangeSortOption'
 }
 
 export class LoadLoadCharacters implements Action {
-  readonly type = StarWarsActionTypes.LoadLoadCharacters;
+  readonly type = StarWarsActionTypes.LoadCharacters;
+
+  constructor(public search?: string) {
+  }
 }
 
 export class LoadLoadCharactersSuccess implements Action {
-  readonly type = StarWarsActionTypes.LoadLoadCharactersSuccess;
+  readonly type = StarWarsActionTypes.LoadCharactersSuccess;
 
   constructor(public characters: Character[]) {
   }
 }
 
 export class LoadLoadCharactersFailure implements Action {
-  readonly type = StarWarsActionTypes.LoadLoadCharactersFailure;
+  readonly type = StarWarsActionTypes.LoadCharactersFailure;
 
   constructor(public error?: any) {
   }
@@ -35,5 +38,6 @@ export class ChangeSortOption implements Action {
   }
 }
 
-export type StarWarsActions = LoadLoadCharacters | LoadLoadCharactersSuccess | LoadLoadCharactersFailure |
+export type StarWarsActions =
+  LoadLoadCharacters | LoadLoadCharactersSuccess | LoadLoadCharactersFailure |
   ChangeSortOption;

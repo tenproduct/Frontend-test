@@ -1,0 +1,19 @@
+<section fxLayout="column">
+  <mat-form-field class="searchField">
+    <mat-label>Search Character</mat-label>
+    <input matInput type="text"
+           [ngModel]="searchValue"
+           (ngModelChange)="changed($event)"
+           (keyup.enter)="search()"
+           (keyup.escape)="searchValue = ''; search()">
+    <button *ngIf="searchValue"
+            mat-button matSuffix mat-icon-button aria-label="Clear"
+            (click)="searchValue = ''; search()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <div>
+    <button mat-raised-button (click)="search()">Search Character</button>
+  </div>
+</section>

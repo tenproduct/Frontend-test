@@ -14,8 +14,8 @@ export class StarWarsEffects {
   @Effect()
   loadCharacters$: Observable<StarWarsStateActions.LoadLoadCharactersSuccess | StarWarsStateActions.LoadLoadCharactersFailure> =
     this.actions$.pipe(
-      ofType<StarWarsStateActions.LoadLoadCharacters>(StarWarsActionTypes.LoadLoadCharacters),
-      switchMap(() => this.service.loadCharacters().pipe(
+      ofType<StarWarsStateActions.LoadLoadCharacters>(StarWarsActionTypes.LoadCharacters),
+      switchMap((action: StarWarsStateActions.LoadLoadCharacters) => this.service.loadCharacters(action.search).pipe(
         map((characters: Character[]) => new StarWarsStateActions.LoadLoadCharactersSuccess(characters)),
         catchError(() => of(new StarWarsStateActions.LoadLoadCharactersFailure()))
       ))
