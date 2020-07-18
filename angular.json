@@ -126,7 +126,8 @@
   "defaultProject": "frontend-test",
   "schematics": {
     "@schematics/angular:component": {
-      "style": "scss"
+      "style": "scss",
+      "changeDetection": "OnPush"
     }
   }
 }

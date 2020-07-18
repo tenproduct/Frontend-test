@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { SortOption } from '../../enums/sort-option';
@@ -7,7 +7,8 @@ import { StarWarsReducer, StarWarsSelectors, StarWarsStateActions } from '../../
 @Component({
   selector: 'app-character-sort',
   templateUrl: './character-sort.component.html',
-  styleUrls: ['./character-sort.component.scss']
+  styleUrls: ['./character-sort.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CharacterSortComponent implements OnInit {
 

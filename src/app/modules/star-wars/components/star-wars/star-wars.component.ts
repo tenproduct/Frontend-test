@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { StarWarsReducer, StarWarsSelectors, StarWarsStateActions } from '../../state';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -7,7 +7,8 @@ import { Character } from '../../interfaces/character';
 @Component({
   selector: 'app-star-wars',
   templateUrl: './star-wars.component.html',
-  styleUrls: ['./star-wars.component.scss']
+  styleUrls: ['./star-wars.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StarWarsComponent implements OnInit {
 
