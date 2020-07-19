@@ -24,13 +24,13 @@ export class CharacterSearchComponent implements OnDestroy {
       distinctUntilChanged(),
       takeUntil(this.destroy$)
     ).subscribe((search: string) => {
-      this.searchValue = search;
       this.search();
       this.cd.markForCheck();
     });
   }
 
   changed(value: string): void {
+    this.searchValue = value;
     this.searchChanged.next(value);
   }
 

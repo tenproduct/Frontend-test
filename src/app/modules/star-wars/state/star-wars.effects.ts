@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
@@ -34,9 +35,16 @@ export class StarWarsEffects {
       new StarWarsStateActions.LoadLoadCharacters(search, page + 1, true))
   );
 
+  @Effect({dispatch: false})
+  error$: Observable<any> = this.actions$.pipe(
+    ofType<StarWarsStateActions.LoadLoadCharactersFailure>(StarWarsActionTypes.LoadCharactersFailure),
+    map(() => this.snackBar.open('Something went wrong while loading characters', 'OK', {duration: 3000}))
+  );
+
   constructor(private actions$: Actions<StarWarsActions>,
               private store: Store<State>,
-              private service: StarWarsService) {
+              private service: StarWarsService,
+              private snackBar: MatSnackBar) {
   }
 
 }
