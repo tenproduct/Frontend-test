@@ -17,6 +17,7 @@ export class StarWarsComponent implements OnInit {
   count$: Observable<number>;
   visibleCount$: Observable<number>;
   hasMoreItems$: Observable<boolean>;
+  isLoading$: Observable<boolean>;
 
   constructor(private store: Store<StarWarsReducer.State>) {
   }
@@ -27,6 +28,7 @@ export class StarWarsComponent implements OnInit {
     this.count$ = this.store.pipe(select(StarWarsSelectors.selectCharactersCount));
     this.visibleCount$ = this.store.pipe(select(StarWarsSelectors.selectVisibleCharactersCount));
     this.hasMoreItems$ = this.store.pipe(select(StarWarsSelectors.selectHasMoreItems));
+    this.isLoading$ = this.store.pipe(select(StarWarsSelectors.selectIsLoading));
   }
 
   loadMore(): void {

@@ -23,6 +23,7 @@ import { StarWarsComponent } from './components/star-wars/star-wars.component';
 import { CharacterCardComponent } from './components/character-card/character-card.component';
 import { CharacterSortComponent } from './components/character-sort/character-sort.component';
 import { CharacterSearchComponent } from './components/character-serach/character-serach.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import { CharacterSearchComponent } from './components/character-serach/characte
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     StarWarsService

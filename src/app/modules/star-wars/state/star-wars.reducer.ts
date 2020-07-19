@@ -11,6 +11,7 @@ export interface State {
   count: number;
   search: string;
   page: number;
+  loading: boolean;
 }
 
 export const initialState: State = {
@@ -18,7 +19,8 @@ export const initialState: State = {
   sortOption: SortOption.A_Z,
   count: 0,
   search: '',
-  page: 1
+  page: 1,
+  loading: false
 };
 
 export function reducer(state = initialState, action: StarWarsActions): State {
@@ -29,7 +31,8 @@ export function reducer(state = initialState, action: StarWarsActions): State {
       return {
         ...state,
         search: loadCharactersAction.search,
-        page: loadCharactersAction.page
+        page: loadCharactersAction.page,
+        loading: true
       };
 
     case StarWarsActionTypes.LoadCharactersSuccess:
@@ -37,7 +40,14 @@ export function reducer(state = initialState, action: StarWarsActions): State {
       return {
         ...state,
         characters: action.append ? [...state.characters, ...action.response.results] : action.response.results,
-        count: action.response.count
+        count: action.response.count,
+        loading: false
+      };
+
+    case StarWarsActionTypes.LoadCharactersFailure:
+      return {
+        ...state,
+        loading: false
       };
 
     case StarWarsActionTypes.ChangeSortOption:

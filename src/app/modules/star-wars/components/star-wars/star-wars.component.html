@@ -12,9 +12,15 @@
   </div>
 
   <div fxLayout="row wrap" fxLayoutGap="20px grid" fxLayoutAlign="center">
-    <app-character-card *ngFor="let character of characters$ | async; let odd = odd"
-                        [character]="character"
-                        [isOdd]="odd"></app-character-card>
+    <ng-container *ngIf="!(isLoading$ | async); else loading">
+      <app-character-card *ngFor="let character of characters$ | async; let odd = odd"
+                          [character]="character"
+                          [isOdd]="odd"></app-character-card>
+    </ng-container>
+
+    <ng-template #loading>
+      <mat-spinner></mat-spinner>
+    </ng-template>
   </div>
 
   <div *ngIf="hasMoreItems$ | async" fxLayout="row">

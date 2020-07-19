@@ -59,3 +59,8 @@ export const selectCurrentSearch: MemoizedSelector<State, string> = createSelect
   selectStarWarsState,
   (state: State) => state.search
 );
+
+export const selectIsLoading: MemoizedSelector<State, boolean> = createSelector(
+  selectStarWarsState,
+  (state: State) => state.loading
+);
