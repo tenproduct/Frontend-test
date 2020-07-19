@@ -14,12 +14,23 @@ export class StarWarsComponent implements OnInit {
 
   characters$: Observable<Character[]>;
 
+  count$: Observable<number>;
+  visibleCount$: Observable<number>;
+  hasMoreItems$: Observable<boolean>;
+
   constructor(private store: Store<StarWarsReducer.State>) {
   }
 
   ngOnInit(): void {
     this.store.dispatch(new StarWarsStateActions.LoadLoadCharacters());
     this.characters$ = this.store.pipe(select(StarWarsSelectors.selectCharacters));
+    this.count$ = this.store.pipe(select(StarWarsSelectors.selectCharactersCount));
+    this.visibleCount$ = this.store.pipe(select(StarWarsSelectors.selectVisibleCharactersCount));
+    this.hasMoreItems$ = this.store.pipe(select(StarWarsSelectors.selectHasMoreItems));
+  }
+
+  loadMore(): void {
+    this.store.dispatch(new StarWarsStateActions.LoadMore());
   }
 
 }

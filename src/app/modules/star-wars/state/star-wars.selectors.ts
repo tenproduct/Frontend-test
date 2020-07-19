@@ -33,3 +33,29 @@ export const selectCharacters: MemoizedSelector<State, Character[]> = createSele
     }
   }
 );
+
+export const selectCharactersCount: MemoizedSelector<State, number> = createSelector(
+  selectStarWarsState,
+  (state: State) => state.count
+);
+
+export const selectVisibleCharactersCount: MemoizedSelector<State, number> = createSelector(
+  selectStarWarsState,
+  (state: State) => state.characters.length
+);
+
+export const selectHasMoreItems: MemoizedSelector<State, boolean> = createSelector(
+  selectCharactersCount,
+  selectVisibleCharactersCount,
+  (count: number, visibleCount: number) => count > visibleCount
+);
+
+export const selectCurrentPage: MemoizedSelector<State, number> = createSelector(
+  selectStarWarsState,
+  (state: State) => state.page
+);
+
+export const selectCurrentSearch: MemoizedSelector<State, string> = createSelector(
+  selectStarWarsState,
+  (state: State) => state.search
+);
