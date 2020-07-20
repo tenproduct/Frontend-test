@@ -2,6 +2,6 @@ import * as StarWarsActions from './star-wars.actions';
 
 describe('StarWars', () => {
   it('should create an instance', () => {
-    expect(new StarWarsActions.LoadStarWarss()).toBeTruthy();
+    expect(new StarWarsActions.LoadLoadCharacters()).toBeTruthy();
   });
 });
