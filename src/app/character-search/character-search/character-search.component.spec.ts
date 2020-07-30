@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { provideMockStore } from '@ngrx/store/testing';
+
 import { CharacterSearchComponent } from './character-search.component';
 
 describe('CharacterSearchComponent', () => {
@@ -8,7 +10,8 @@ describe('CharacterSearchComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [CharacterSearchComponent]
+            declarations: [CharacterSearchComponent],
+            providers: [provideMockStore()]
         })
         .compileComponents();
     }));
