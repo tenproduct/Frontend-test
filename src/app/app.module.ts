@@ -1,18 +1,20 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
 @NgModule({
     declarations: [
         AppComponent
     ],
     imports: [
+        BrowserAnimationsModule,
+        AppRoutingModule,
         BrowserModule,
-        MatToolbarModule,
-        BrowserAnimationsModule
+        MatToolbarModule
     ],
     providers: [],
     bootstrap: [AppComponent]

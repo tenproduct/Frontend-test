@@ -19,7 +19,11 @@
             "dom"
         ],
         "paths": {
-            "@environment": ["src/environments/environment.ts"]
+            "@environment": ["src/environments/environment.ts"],
+            "@shared": ["src/app/shared/index.ts"],
+            "@shared/*": ["src/app/shared/*"],
+            "@character-search": ["src/app/character-search/index.ts"],
+            "@character-search/*": ["src/app/character-search/*"]
         }
     },
     "angularCompilerOptions": {
