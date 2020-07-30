@@ -1,0 +1,13 @@
+@import 'breakpoints';
+
+.cards-section {
+    padding: var(--gap);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: var(--gap);
+
+    @media (min-width: $mobile-break-point) {
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        
+    }
+}

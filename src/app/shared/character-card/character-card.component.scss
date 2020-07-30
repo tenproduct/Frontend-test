@@ -1,0 +1,14 @@
+mat-card {
+    padding: 16px;
+
+    img[mat-card-image] {
+        padding: 16px;
+        box-sizing: border-box;
+    }
+
+    mat-card-content {
+        padding-bottom: 16px;
+        text-align: center;
+        font-size: 1.75rem;
+    }
+}
