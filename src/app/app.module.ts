@@ -1,4 +1,5 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -8,6 +9,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
 import { SHARED_REDUCERS_TOKEN, SharedEffects, sharedReducers } from '@shared/store';
+import { LoadingInterceptor } from '@shared/loading-interceptor';
 import { SharedModule } from '@shared/shared.module';
 import { environment } from '@environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -37,6 +39,7 @@ import { AppComponent } from './app.component';
         SharedModule
     ],
     providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
         { provide: SHARED_REDUCERS_TOKEN, useValue: sharedReducers }
     ],
     bootstrap: [AppComponent]

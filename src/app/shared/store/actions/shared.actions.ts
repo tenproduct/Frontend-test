@@ -5,7 +5,10 @@ import { GetCharactersResponse } from '@shared/models';
 export enum SharedActionTypes {
     GetCharactersSuccess = '[SHARED] Get Characters Success',
     CharacterSearchTermChange = '[SHARED] Character Search Term Change',
-    LoadNextPage = '[SHARED] Load Next Page'
+    LoadNextPage = '[SHARED] Load Next Page',
+    StartLoading = '[SHARED] Start Loading',
+    StopLoading = '[SHARED] Stop Loading',
+
 }
 
 export const getCharactersSuccessAction = createAction(
@@ -20,4 +23,12 @@ export const characterSearchTermChangeAction = createAction(
 
 export const loadNextPageAction = createAction(
     SharedActionTypes.LoadNextPage
+);
+
+export const startLoadingAction = createAction(
+    SharedActionTypes.StartLoading
+);
+
+export const stopLoadingAction = createAction(
+    SharedActionTypes.StopLoading
 );

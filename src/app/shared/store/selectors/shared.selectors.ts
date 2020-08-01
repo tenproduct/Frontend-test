@@ -34,3 +34,8 @@ export const selectNextPageUrl = createSelector(
     selectSharedState,
     sharedState => sharedState.nextPageUrl
 );
+
+export const selectIsLoading = createSelector(
+    selectSharedState,
+    sharedState => sharedState.loadingCount > 0
+);

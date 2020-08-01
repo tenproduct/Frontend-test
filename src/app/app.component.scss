@@ -1,0 +1,12 @@
+:host {
+    height: 100%;
+    display: block;
+    overflow-y: auto;
+}
+
+app-toolbar {
+    display: block;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+}

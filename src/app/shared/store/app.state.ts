@@ -8,6 +8,7 @@ export interface SharedState {
     characterCount: number;
     nextPageUrl: string;
     characterSearchTerm: string;
+    loadingCount: number;
 }
 
 export interface AppState {

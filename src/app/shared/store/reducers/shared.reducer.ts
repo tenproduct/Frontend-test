@@ -1,6 +1,11 @@
 import { on, createReducer } from '@ngrx/store';
 
-import { getCharactersSuccessAction, characterSearchTermChangeAction } from '../actions/shared.actions';
+import {
+    characterSearchTermChangeAction,
+    getCharactersSuccessAction,
+    startLoadingAction,
+    stopLoadingAction
+} from '../actions/shared.actions';
 import { characterAdapter } from '../entity-adapters/character.adapter';
 import { SharedState } from '../app.state';
 
@@ -8,11 +13,22 @@ export const initialSharedState: SharedState = {
     characters: characterAdapter.getInitialState(),
     characterCount: 0,
     nextPageUrl: null,
-    characterSearchTerm: ''
+    characterSearchTerm: '',
+    loadingCount: 0
 };
 
 export const sharedReducer = createReducer(
     initialSharedState,
+
+    on(startLoadingAction, state => ({
+        ...state,
+        loadingCount: state.loadingCount + 1
+    })),
+
+    on(stopLoadingAction, state => ({
+        ...state,
+        loadingCount: state.loadingCount - 1
+    })),
 
     on(characterSearchTermChangeAction, (state, { characterSearchTerm }) => ({
         ...state,
