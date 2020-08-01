@@ -1,3 +1,8 @@
-<section class="cards-section">
-    <app-character-card *ngFor="let character of characters$ | async; let odd = odd" [character]="character" [odd]="odd"></app-character-card>
-</section>
+<div class="character-search-wrapper">
+    <section class="search-section">
+        <app-search-field></app-search-field>
+    </section>
+    <section class="cards-section">
+        <app-character-card @fadeIn *ngFor="let character of characters$ | async; trackBy: 'url' | trackByProperty; let odd = odd" [character]="character" [odd]="odd"></app-character-card>
+    </section>
+</div>

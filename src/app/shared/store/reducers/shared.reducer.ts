@@ -1,17 +1,24 @@
 import { on, createReducer } from '@ngrx/store';
 
-import { getCharactersSuccessAction } from '../actions/shared.actions';
+import { getCharactersSuccessAction, characterSearchTermChangeAction } from '../actions/shared.actions';
 import { characterAdapter } from '../entity-adapters/character.adapter';
 import { SharedState } from '../app.state';
 
 export const initialSharedState: SharedState = {
     characters: characterAdapter.getInitialState(),
     characterCount: 0,
-    nextPageUrl: null
+    nextPageUrl: null,
+    characterSearchTerm: ''
 };
 
 export const sharedReducer = createReducer(
     initialSharedState,
+
+    on(characterSearchTermChangeAction, (state, { characterSearchTerm }) => ({
+        ...state,
+        characterSearchTerm
+    })),
+
     on(getCharactersSuccessAction, (state, { getCharactersResponse }) => ({
         ...state,
         characterCount: getCharactersResponse.count,

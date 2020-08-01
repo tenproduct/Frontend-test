@@ -1,0 +1,19 @@
+@import 'breakpoints';
+
+.search-field-wrapper {
+    text-align: center;
+
+    mat-form-field {
+        max-width: 500px;
+        margin: 0 auto;
+        display: block;
+    }
+
+    button {
+        width: 100%;
+
+        @media (min-width: $mobile-break-point) {
+            width: auto;
+        }
+    }
+}

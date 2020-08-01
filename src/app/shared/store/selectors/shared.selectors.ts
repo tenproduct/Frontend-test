@@ -14,3 +14,8 @@ export const selectCharacters = createSelector(
     characterAdapter.getSelectors(selectCharacterEntityState).selectAll,
     characters => characters
 );
+
+export const selectCharacterSearchTerm = createSelector(
+    selectSharedState,
+    sharedState => sharedState.characterSearchTerm
+);

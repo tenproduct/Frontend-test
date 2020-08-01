@@ -7,6 +7,7 @@ export interface SharedState {
     characters: EntityState<Character>;
     characterCount: number;
     nextPageUrl: string;
+    characterSearchTerm: string;
 }
 
 export interface AppState {

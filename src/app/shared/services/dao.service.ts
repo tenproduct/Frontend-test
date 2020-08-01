@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
@@ -12,7 +12,13 @@ import {  GetCharactersResponse } from '../models';
 export class DaoService {
     constructor(private http: HttpClient) { }
 
-    public getCharacters(): Observable<GetCharactersResponse> {
-        return this.http.get<GetCharactersResponse>(`${environment.apiUrl}people/`);
+    public getCharacters(searchTerm?: string): Observable<GetCharactersResponse> {
+        let params = new HttpParams();
+
+        if (searchTerm) {
+            params = params.append('search', searchTerm);
+        }
+
+        return this.http.get<GetCharactersResponse>(`${environment.apiUrl}people`, { params });
     }
 }

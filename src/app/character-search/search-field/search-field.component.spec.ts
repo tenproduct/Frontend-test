@@ -2,24 +2,23 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { provideMockStore } from '@ngrx/store/testing';
 
-import { TrackByPropertyPipe } from '@shared/pipes';
 import { initialSharedState } from '@shared/store';
-import { CharacterSearchComponent } from './character-search.component';
+import { SearchFieldComponent } from './search-field.component';
 
-describe('CharacterSearchComponent', () => {
-    let component: CharacterSearchComponent;
-    let fixture: ComponentFixture<CharacterSearchComponent>;
+describe('SearchFieldComponent', () => {
+    let component: SearchFieldComponent;
+    let fixture: ComponentFixture<SearchFieldComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [CharacterSearchComponent, TrackByPropertyPipe],
+            declarations: [SearchFieldComponent],
             providers: [provideMockStore({ initialState: { shared: initialSharedState } })]
         })
         .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(CharacterSearchComponent);
+        fixture = TestBed.createComponent(SearchFieldComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
