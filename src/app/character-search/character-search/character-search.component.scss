@@ -6,12 +6,21 @@
     grid-gap: var(--gap);
 
     .cards-section {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-gap: var(--gap);
-    
-        @media (min-width: $mobile-break-point) {
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        display: flex;
+        flex-direction: column;
+
+        .character-cards-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-gap: var(--gap);
+        
+            @media (min-width: $mobile-break-point) {
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            }
+        }
+
+        button {
+            margin-top: var(--gap);
         }
     }
 }

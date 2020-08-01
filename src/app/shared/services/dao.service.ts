@@ -19,6 +19,10 @@ export class DaoService {
             params = params.append('search', searchTerm);
         }
 
-        return this.http.get<GetCharactersResponse>(`${environment.apiUrl}people`, { params });
+        return this.getResourceByUrl(`${environment.apiUrl}people`, params);
+    }
+
+    public getResourceByUrl<T>(url: string, params?: HttpParams): Observable<T> {
+        return this.http.get<T>(url, { params });
     }
 }

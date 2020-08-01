@@ -4,7 +4,8 @@ import { GetCharactersResponse } from '@shared/models';
 
 export enum SharedActionTypes {
     GetCharactersSuccess = '[SHARED] Get Characters Success',
-    CharacterSearchTermChange = '[SHARED] Character Search Term Change'
+    CharacterSearchTermChange = '[SHARED] Character Search Term Change',
+    LoadNextPage = '[SHARED] Load Next Page'
 }
 
 export const getCharactersSuccessAction = createAction(
@@ -15,4 +16,8 @@ export const getCharactersSuccessAction = createAction(
 export const characterSearchTermChangeAction = createAction(
     SharedActionTypes.CharacterSearchTermChange,
     props<{ characterSearchTerm: string }>()
+);
+
+export const loadNextPageAction = createAction(
+    SharedActionTypes.LoadNextPage
 );

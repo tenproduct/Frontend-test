@@ -19,3 +19,13 @@ export const selectCharacterSearchTerm = createSelector(
     selectSharedState,
     sharedState => sharedState.characterSearchTerm
 );
+
+export const selectCanLoadMore = createSelector(
+    selectSharedState,
+    sharedState => !!sharedState.nextPageUrl
+);
+
+export const selectNextPageUrl = createSelector(
+    selectSharedState,
+    sharedState => sharedState.nextPageUrl
+);

@@ -1,11 +1,11 @@
-import { trigger, transition, style, animate } from '@angular/animations';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { Store, select } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
 
-import { AppState, selectCharacters } from '@shared/store';
+import { AppState, selectCharacters, selectCanLoadMore, loadNextPageAction } from '@shared/store';
+import { fadeInAnimation } from '@shared/animations';
 import { Character } from '@shared/models';
 
 @Component({
@@ -13,19 +13,18 @@ import { Character } from '@shared/models';
     templateUrl: './character-search.component.html',
     styleUrls: ['./character-search.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    animations: [
-        trigger('fadeIn', [
-            transition('void => *', [
-                style({ opacity: 0 }),
-                animate('500ms cubic-bezier(0.25, 0.8, 0.25, 1)', style({ opacity: 1 }))
-            ])
-        ])
-    ]
+    animations: [fadeInAnimation]
 })
 export class CharacterSearchComponent{
     public characters$: Observable<Character[]>;
+    public canLoadMore$: Observable<boolean>;
 
     constructor(private store: Store<AppState>) {
         this.characters$ = this.store.pipe(select(selectCharacters));
+        this.canLoadMore$ = this.store.pipe(select(selectCanLoadMore));
+    }
+
+    public loadNextPage(): void {
+        this.store.dispatch(loadNextPageAction());
     }
 }

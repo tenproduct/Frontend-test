@@ -3,6 +3,9 @@
         <app-search-field></app-search-field>
     </section>
     <section class="cards-section">
-        <app-character-card @fadeIn *ngFor="let character of characters$ | async; trackBy: 'url' | trackByProperty; let odd = odd" [character]="character" [odd]="odd"></app-character-card>
+        <div class="character-cards-wrapper">
+            <app-character-card @fadeIn *ngFor="let character of characters$ | async; trackBy: 'url' | trackByProperty; let odd = odd" [character]="character" [odd]="odd"></app-character-card>
+        </div>
+        <button mat-flat-button color="primary" *ngIf="canLoadMore$ | async" (click)="loadNextPage()">Load More</button>
     </section>
 </div>
