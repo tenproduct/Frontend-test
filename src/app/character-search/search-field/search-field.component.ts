@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 
@@ -11,7 +11,8 @@ import { untilDestroyed } from '@shared/operators';
 @Component({
     selector: 'app-search-field',
     templateUrl: './search-field.component.html',
-    styleUrls: ['./search-field.component.scss']
+    styleUrls: ['./search-field.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchFieldComponent implements OnDestroy {
     private appliedCharacterSearchTerm$: BehaviorSubject<string>;

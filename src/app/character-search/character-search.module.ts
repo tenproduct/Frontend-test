@@ -7,6 +7,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 
+import { ReactiveComponentModule } from '@ngrx/component';
+
 import { SharedModule } from '@shared/shared.module';
 import { CharacterSearchComponent } from './character-search/character-search.component';
 import { SearchFieldComponent } from './search-field/search-field.component';
@@ -23,6 +25,7 @@ const routes: Routes = [
     declarations: [CharacterSearchComponent, SearchFieldComponent],
     imports: [
         RouterModule.forChild(routes),
+        ReactiveComponentModule,
         CommonModule,
         SharedModule,
         FormsModule,

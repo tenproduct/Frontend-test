@@ -1,11 +1,14 @@
-<div class="character-search-wrapper">
+<main class="character-search-wrapper" *ngrxLet="characters$ as characters">
     <section class="search-section">
         <app-search-field></app-search-field>
     </section>
+    <section class="info-section">
+        Showing {{ characters?.length || 0 }} {{ characters?.length === 1 ? 'result' : 'results' }} of {{ characterCount$ | async }}
+    </section>
     <section class="cards-section">
         <div class="character-cards-wrapper">
-            <app-character-card @fadeIn *ngFor="let character of characters$ | async; trackBy: 'url' | trackByProperty; let odd = odd" [character]="character" [odd]="odd"></app-character-card>
+            <app-character-card @fadeIn *ngFor="let character of characters; trackBy: 'url' | trackByProperty; let odd = odd" [character]="character" [odd]="odd"></app-character-card>
         </div>
         <button mat-flat-button color="primary" *ngIf="canLoadMore$ | async" (click)="loadNextPage()">Load More</button>
     </section>
-</div>
+</main>

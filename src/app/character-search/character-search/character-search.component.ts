@@ -4,7 +4,7 @@ import { Store, select } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
 
-import { AppState, selectCharacters, selectCanLoadMore, loadNextPageAction } from '@shared/store';
+import { AppState, selectCharacters, selectCanLoadMore, selectCharacterCount, loadNextPageAction } from '@shared/store';
 import { fadeInAnimation } from '@shared/animations';
 import { Character } from '@shared/models';
 
@@ -16,10 +16,12 @@ import { Character } from '@shared/models';
     animations: [fadeInAnimation]
 })
 export class CharacterSearchComponent{
+    public characterCount$: Observable<number>;
     public characters$: Observable<Character[]>;
     public canLoadMore$: Observable<boolean>;
 
     constructor(private store: Store<AppState>) {
+        this.characterCount$ = this.store.pipe(select(selectCharacterCount));
         this.characters$ = this.store.pipe(select(selectCharacters));
         this.canLoadMore$ = this.store.pipe(select(selectCanLoadMore));
     }

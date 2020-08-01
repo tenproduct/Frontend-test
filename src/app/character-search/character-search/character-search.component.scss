@@ -5,6 +5,10 @@
     display: grid;
     grid-gap: var(--gap);
 
+    .info-section {
+        font-size: 1.2rem;
+    }
+
     .cards-section {
         display: flex;
         flex-direction: column;

@@ -20,6 +20,11 @@ export const selectCharacterSearchTerm = createSelector(
     sharedState => sharedState.characterSearchTerm
 );
 
+export const selectCharacterCount = createSelector(
+    selectSharedState,
+    sharedState => sharedState.characterCount
+);
+
 export const selectCanLoadMore = createSelector(
     selectSharedState,
     sharedState => !!sharedState.nextPageUrl
