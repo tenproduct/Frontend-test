@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 
 import { LoadingIndicatorComponent } from './loading-indicator/loading-indicator.component';
@@ -30,6 +31,7 @@ const sharedPipes = [
         CommonModule,
         MatProgressBarModule,
         MatToolbarModule,
+        MatDialogModule,
         MatCardModule
     ],
     exports: [

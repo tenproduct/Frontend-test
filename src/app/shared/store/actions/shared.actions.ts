@@ -1,14 +1,15 @@
 import { createAction, props } from '@ngrx/store';
 
-import { GetCharactersResponse } from '@shared/models';
+import { GetCharactersResponse, CharacterSort } from '@shared/models';
 
 export enum SharedActionTypes {
     GetCharactersSuccess = '[SHARED] Get Characters Success',
     CharacterSearchTermChange = '[SHARED] Character Search Term Change',
     LoadNextPage = '[SHARED] Load Next Page',
+    CharacterSortChange = '[SHARED] Character Sort Change',
+    LoadAllCharacters = '[SHARED] Load All Characters',
     StartLoading = '[SHARED] Start Loading',
     StopLoading = '[SHARED] Stop Loading',
-
 }
 
 export const getCharactersSuccessAction = createAction(
@@ -23,6 +24,15 @@ export const characterSearchTermChangeAction = createAction(
 
 export const loadNextPageAction = createAction(
     SharedActionTypes.LoadNextPage
+);
+
+export const characterSortChangeAction = createAction(
+    SharedActionTypes.CharacterSortChange,
+    props<{ characterSort: CharacterSort }>()
+);
+
+export const loadAllCharactersAction = createAction(
+    SharedActionTypes.LoadAllCharacters
 );
 
 export const startLoadingAction = createAction(

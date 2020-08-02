@@ -1,0 +1,21 @@
+@import 'breakpoints';
+@import 'variables';
+
+:host {
+    display: flex;
+    align-items: center;
+}
+
+mat-form-field {
+    flex: 1;
+
+    @media (min-width: $mobile-break-point) {
+        flex: none;
+    }
+}
+
+button[mat-icon-button] {
+    margin-left: 4px;
+    color: $color-warning-red;
+    cursor: pointer;
+}

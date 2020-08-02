@@ -20,7 +20,6 @@ import { AppComponent } from './app.component';
         AppComponent
     ],
     imports: [
-        !environment.production ? StoreDevtoolsModule.instrument() : [],
         StoreModule.forRoot(SHARED_REDUCERS_TOKEN, {
             runtimeChecks: {
                 strictStateImmutability: true,
@@ -36,7 +35,8 @@ import { AppComponent } from './app.component';
         BrowserAnimationsModule,
         AppRoutingModule,
         BrowserModule,
-        SharedModule
+        SharedModule,
+        !environment.production ? StoreDevtoolsModule.instrument() : []
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },

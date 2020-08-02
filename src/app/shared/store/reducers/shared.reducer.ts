@@ -3,6 +3,7 @@ import { on, createReducer } from '@ngrx/store';
 import {
     characterSearchTermChangeAction,
     getCharactersSuccessAction,
+    characterSortChangeAction,
     startLoadingAction,
     stopLoadingAction
 } from '../actions/shared.actions';
@@ -14,7 +15,8 @@ export const initialSharedState: SharedState = {
     characterCount: 0,
     nextPageUrl: null,
     characterSearchTerm: '',
-    loadingCount: 0
+    loadingCount: 0,
+    characterSort: null
 };
 
 export const sharedReducer = createReducer(
@@ -33,6 +35,11 @@ export const sharedReducer = createReducer(
     on(characterSearchTermChangeAction, (state, { characterSearchTerm }) => ({
         ...state,
         characterSearchTerm
+    })),
+
+    on(characterSortChangeAction, (state, { characterSort }) => ({
+        ...state,
+        characterSort
     })),
 
     on(getCharactersSuccessAction, (state, { getCharactersResponse }) => ({

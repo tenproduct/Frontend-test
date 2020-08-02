@@ -7,7 +7,12 @@ import { switchMap, map, withLatestFrom, filter } from 'rxjs/operators';
 
 import { GetCharactersResponse } from '@shared/models';
 import { DaoService } from '@shared/services';
-import { getCharactersSuccessAction, characterSearchTermChangeAction, loadNextPageAction } from '../actions/shared.actions';
+import {
+    characterSearchTermChangeAction,
+    getCharactersSuccessAction,
+    loadAllCharactersAction,
+    loadNextPageAction
+} from '../actions/shared.actions';
 import { selectCharacterSearchTerm, selectNextPageUrl } from '../selectors';
 import { AppState } from '../app.state';
 
@@ -24,12 +29,15 @@ export class SharedEffects {
         )
     );
 
-    public loadNextPage = createEffect(() =>
+    public loadMore$ = createEffect(() =>
         this.actions$.pipe(
-            ofType(loadNextPageAction),
+            ofType(loadNextPageAction, loadAllCharactersAction),
             withLatestFrom(this.store.select(selectNextPageUrl)),
             filter(nextPageUrl => !!nextPageUrl),
-            switchMap(([action, nextPageUrl]) => this.dao.getResourceByUrl<GetCharactersResponse>(nextPageUrl)),
+            switchMap(([action, nextPageUrl]) => action.type === loadNextPageAction.type
+                ? this.dao.getResourceByUrl<GetCharactersResponse>(nextPageUrl)
+                : this.dao.getAllResourcesByUrl<GetCharactersResponse>(nextPageUrl)
+            ),
             map(getCharactersResponse => getCharactersSuccessAction({ getCharactersResponse }))
         )
     );

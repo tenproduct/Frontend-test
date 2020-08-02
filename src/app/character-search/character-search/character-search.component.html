@@ -5,6 +5,9 @@
     <section class="info-section">
         Showing {{ characters?.length || 0 }} {{ characters?.length === 1 ? 'result' : 'results' }} of {{ characterCount$ | async }}
     </section>
+    <section>
+        <app-character-sort-field></app-character-sort-field>
+    </section>
     <section class="cards-section">
         <div class="character-cards-wrapper">
             <app-character-card @fadeIn *ngFor="let character of characters; trackBy: 'url' | trackByProperty; let odd = odd" [character]="character" [odd]="odd"></app-character-card>

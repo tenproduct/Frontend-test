@@ -1,0 +1,9 @@
+<mat-form-field>
+    <mat-label>Sort by</mat-label>
+    <mat-select [ngModel]="sortOption" (selectionChange)="sortOptionChange($event)">
+        <mat-option *ngFor="let option of options" [value]="option.value">{{ option.displayValue }}</mat-option>
+    </mat-select>
+</mat-form-field>
+<button mat-icon-button *ngIf="sortOption && canLoadMore$ | async" (click)="openSortWarningDialog()">
+    <mat-icon matTooltip="Sorting only takes effect on the currently loaded characters." [matTooltipShowDelay]="200">warning</mat-icon>
+</button>
