@@ -10,7 +10,12 @@
     </section>
     <section class="cards-section">
         <div class="character-cards-wrapper">
-            <app-character-card @fadeIn *ngFor="let character of characters; trackBy: 'url' | trackByProperty; let odd = odd" [character]="character" [odd]="odd"></app-character-card>
+            <app-character-card *ngFor="let character of characters; trackBy: 'url' | trackByProperty; let odd = odd"
+                [character]="character"
+                [odd]="odd"
+                (click)="openCharacterInfoDialog(character, odd)"
+                @fadeIn
+            ></app-character-card>
         </div>
         <button mat-flat-button color="primary" *ngIf="canLoadMore$ | async" (click)="loadNextPage()">Load More</button>
     </section>

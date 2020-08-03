@@ -1,10 +1,11 @@
-export interface Character {
+import { Resource } from './resource.model';
+
+export interface Character extends Resource {
     birth_year: string;
-    created: string;
     eye_color: string;
     films: string[];
     gender: string;
-    hari_color: string;
+    hair_color: string;
     height: string;
     homeworld: string;
     mass: string;
@@ -12,6 +13,5 @@ export interface Character {
     skin_color: string;
     species: string[];
     starships: string[];
-    url: string;
     vehicles: string[];
 }

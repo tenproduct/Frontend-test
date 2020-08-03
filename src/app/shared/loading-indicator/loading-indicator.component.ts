@@ -3,6 +3,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 import { selectIsLoading, AppState } from '@shared/store';
 
@@ -16,6 +17,6 @@ export class LoadingIndicatorComponent {
     public isLoading$: Observable<boolean>;
 
     constructor(private store: Store<AppState>) {
-        this.isLoading$ = this.store.select(selectIsLoading);
+        this.isLoading$ = this.store.select(selectIsLoading).pipe(delay(0));
     }
 }

@@ -1,0 +1,93 @@
+<mat-tab-group>
+    <mat-tab label="Character info">
+        <ng-template matTabContent>
+            <ng-container *ngTemplateOutlet="tabTemplate, context: { resources: [data.character], titleProp: 'name', statList: characterStatList }"></ng-container>
+        </ng-template>
+    </mat-tab>
+    <mat-tab label="Movies">
+        <ng-template matTabContent>
+            <ng-container *ngTemplateOutlet="tabTemplate, context: { resources: (movies$ | async), titleProp: 'title', statList: movieStatList }"></ng-container>
+        </ng-template>
+    </mat-tab>
+    <mat-tab label="Vehicles">
+        <ng-template matTabContent>
+            <ng-container *ngTemplateOutlet="tabTemplate, context: { resources: (vehicles$ | async), titleProp: 'name', statList: vehicleStatList }"></ng-container>
+        </ng-template>
+    </mat-tab>
+    <mat-tab label="Starships">
+        <ng-template matTabContent>
+            <ng-container *ngTemplateOutlet="tabTemplate, context: { resources: (starships$ | async), titleProp: 'name', statList: starshipStatList }"></ng-container>
+        </ng-template>
+    </mat-tab>
+    <mat-tab label="Species">
+        <ng-template matTabContent>
+            <ng-container *ngTemplateOutlet="tabTemplate, context: { resources: (species$ | async), titleProp: 'name', statList: speciesStatList }"></ng-container>
+        </ng-template>
+    </mat-tab>
+</mat-tab-group>
+
+<ng-template #characterStatList let-character>
+    <li>Birth year: {{ character.birth_year }}</li>
+    <li>Height: {{ character.height }}</li>
+    <li>Mass: {{ character.mass }}</li>
+    <li>Gender: {{ character.gender }}</li>
+    <li>Eye color: {{ character.eye_color }}</li>
+    <li>Hair color: {{ character.hair_color }}</li>
+    <li>Skin color: {{ character.skin_color }}</li>
+</ng-template>
+
+<ng-template #movieStatList let-movie>
+    <li>Director: {{ movie.director }}</li>
+    <li>Producer: {{ movie.producer }}</li>
+    <li>Released: {{ movie.release_date }}</li>
+    <li>Opening crawl: {{ movie.opening_crawl }}</li>
+</ng-template>
+
+<ng-template #vehicleStatList let-vehicle>
+    <li>Model: {{ vehicle.model }}</li>
+    <li>Crew: {{ vehicle.crew }}</li>
+    <li>Length: {{ vehicle.length }}</li>
+    <li>Manufacturer: {{ vehicle.manufacturer }}</li>
+    <li>Max atmosphering speed: {{ vehicle.max_atmosphering_speed }}</li>
+    <li>Passengers: {{ vehicle.passengers }}</li>
+    <li>Class: {{ vehicle.vehicle_class }}</li>
+</ng-template>
+
+<ng-template #starshipStatList let-starship>
+    <li>Model: {{ starship.model }}</li>
+    <li>Crew: {{ starship.crew }}</li>
+    <li>Length: {{ starship.length }}</li>
+    <li>Manufacturer: {{ starship.manufacturer }}</li>
+    <li>Max atmosphering speed: {{ starship.max_atmosphering_speed }}</li>
+    <li>Hyperdrive rating: {{ starship.hyperdrive_rating }}</li>
+    <li>Class: {{ starship.starship_class }}</li>
+</ng-template>
+
+<ng-template #speciesStatList let-species>
+    <li>Classification: {{ species.classification }}</li>
+    <li>Skin colors: {{ species.skin_colors }}</li>
+    <li>Hair colors: {{ species.hair_colors }}</li>
+    <li>Designation: {{ species.designation }}</li>
+    <li>Average height: {{ species.average_height }}</li>
+    <li>Average lifespan: {{ species.average_lifespan }}</li>
+    <li>Language: {{ species.language }}</li>
+</ng-template>
+
+<ng-template #tabTemplate let-resources="resources" let-titleProp="titleProp" let-statList="statList">
+    <div class="tab-wrapper">
+        <mat-spinner *ngIf="!resources"></mat-spinner>
+        <mat-card *ngFor="let resource of resources">
+            <mat-card-header>
+                <mat-card-title>{{ resource[titleProp] }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <ul>
+                    <ng-container *ngTemplateOutlet="statList, context: { $implicit: resource }"></ng-container>
+                </ul>
+            </mat-card-content>
+        </mat-card>
+        <div class="no-resource-message" *ngIf="resources && !resources.length">
+            There are no associated resources with {{ data.character.name }} in this category.
+        </div>
+    </div>
+</ng-template>

@@ -23,7 +23,7 @@ export class DaoService {
         return this.getResourceByUrl(`${environment.apiUrl}people`, params);
     }
 
-    public getResourceByUrl<T extends PagedResponse>(url: string, params?: HttpParams): Observable<T> {
+    public getResourceByUrl<T>(url: string, params?: HttpParams): Observable<T> {
         return this.http.get<T>(url, { params });
     }
 

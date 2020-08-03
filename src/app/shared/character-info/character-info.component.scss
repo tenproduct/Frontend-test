@@ -1,0 +1,34 @@
+@import 'variables';
+
+mat-tab-group {
+    height: 100%;
+
+    .tab-wrapper {
+        height: 100%;
+        padding: calc(var(--gap) / 2);
+        display: grid;
+        grid-gap: calc(var(--gap) / 2);
+        grid-template-columns: 1fr;
+        align-items: center;
+        justify-content: center;
+        background: $color-bg;
+        box-sizing: border-box;
+
+        mat-spinner {
+            margin: 0 auto;
+        }
+    
+        mat-card {
+            margin: 8px;
+        }
+        
+        li {
+            padding: 8px 0;
+        }
+
+        .no-resource-message {
+            text-align: center;
+        }
+    }
+    
+}

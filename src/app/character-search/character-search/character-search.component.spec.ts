@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { provideMockStore } from '@ngrx/store/testing';
 
@@ -12,6 +13,7 @@ describe('CharacterSearchComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            imports: [MatDialogModule],
             declarations: [CharacterSearchComponent, TrackByPropertyPipe],
             providers: [provideMockStore({ initialState: { shared: initialSharedState } })]
         })
