@@ -3,7 +3,7 @@ import { Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { BehaviorSubject } from 'rxjs';
-import { distinctUntilChanged } from 'rxjs/operators';
+import { distinctUntilChanged, skip } from 'rxjs/operators';
 
 import { AppState, characterSearchTermChangeAction } from '@shared/store';
 import { untilDestroyed } from '@shared/operators';
@@ -24,6 +24,7 @@ export class SearchFieldComponent implements OnDestroy {
 
         this.appliedCharacterSearchTerm$.pipe(
             distinctUntilChanged(),
+            skip(1),
             untilDestroyed(this)
         ).subscribe(characterSearchTerm => {
             this.store.dispatch(characterSearchTermChangeAction({ characterSearchTerm }));
