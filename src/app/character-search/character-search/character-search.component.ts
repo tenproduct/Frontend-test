@@ -35,7 +35,7 @@ export class CharacterSearchComponent{
     public openCharacterInfoDialog(character: Character, odd: boolean): void {
         this.dialog.open<CharacterInfoComponent, CharacterInfoComponentData, void>(CharacterInfoComponent, {
             width: '750px',
-            height: '400px',
+            height: '430px',
             maxHeight: '90%',
             panelClass: 'character-info-dialog',
             data: { character, odd }

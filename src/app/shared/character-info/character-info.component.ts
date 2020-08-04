@@ -7,7 +7,7 @@ import { defaultIfEmpty, shareReplay } from 'rxjs/operators';
 import { Resource, Character, Vehicle, Movie, Starship, Species } from '@shared/models';
 import { DaoService } from '@shared/services';
 
-type ResourceType = 'films' | 'vehicles' | 'species' | 'starships' | 'species';
+type ResourceType = 'films' | 'vehicles' | 'species' | 'starships';
 
 export interface CharacterInfoComponentData {
     character: Character;

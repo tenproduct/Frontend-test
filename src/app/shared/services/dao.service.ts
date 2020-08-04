@@ -5,7 +5,7 @@ import { Observable, merge, Subject } from 'rxjs';
 import { tap, scan, takeWhile, last } from 'rxjs/operators';
 
 import { environment } from '@environment';
-import {  GetCharactersResponse, PagedResponse } from '../models';
+import { GetCharactersResponse, PagedResponse } from '../models';
 
 @Injectable({
     providedIn: 'root'
