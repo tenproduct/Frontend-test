@@ -17,6 +17,7 @@ import { SwapiSearchCardComponent } from './swapi-search/components/swapi-search
 import { SwapiSearchFormComponent } from './swapi-search/components/swapi-search-form/swapi-search-form.component';
 import { SwapiSearchResultComponent } from './swapi-search/components/swapi-search-result/swapi-search-result.component';
 import { StoreModule } from '@ngrx/store';
+import { SwapiService } from './swapi-search/services/swapi.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { StoreModule } from '@ngrx/store';
     MatProgressSpinnerModule,
     MatSelectModule
   ],
-  providers: [],
+  providers: [SwapiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

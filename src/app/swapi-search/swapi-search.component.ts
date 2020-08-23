@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SwapiService } from './services/swapi.service';
 
 @Component({
   selector: 'app-swapi-search',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SwapiSearchComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private swapiService: SwapiService
+  ) { }
 
   ngOnInit() {
+    this.fetchData();
   }
 
+  private fetchData() {
+    this.swapiService.fetchCharacters()
+      .subscribe(response => {
+        console.log(response);
+      });
+  }
 }
