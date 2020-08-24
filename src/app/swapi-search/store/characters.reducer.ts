@@ -81,8 +81,8 @@ const _characterReducer = createReducer(
     CharacterActions.sortCharacters,
     (state, action) => ({
       ...state,
-      sortType: action.key,
-      sortDirection: action.direction
+      sortDirection: getSortDirection(state, action),
+      sortType: action.sortType
     })
   )
 
@@ -91,3 +91,12 @@ const _characterReducer = createReducer(
 export function characterReducer(state: CharacterState, action: Action) {
   return _characterReducer(state, action);
 }
+
+function getSortDirection(state, action): SortDirection {
+  if (state.sortType === action.sortType) {
+    return state.sortDirection === SortDirection.ONWARDS ? SortDirection.BACKWARDS : SortDirection.ONWARDS;
+  }
+
+  return SortDirection.ONWARDS;
+}
+

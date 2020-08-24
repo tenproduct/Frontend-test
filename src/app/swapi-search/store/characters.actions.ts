@@ -22,10 +22,7 @@ export const fetchCharactersError = createAction(
 );
 
 export const fetchNextPage = createAction(
-  'Fetch Next Page of Characters',
-  props<{
-    nextPageUrl: string;
-  }>()
+  'Fetch Next Page of Characters'
 );
 
 export const fetchNextPageSuccess = createAction(
@@ -66,8 +63,7 @@ export const searchCharactersError = createAction(
 export const sortCharacters = createAction(
   'Sort Characters',
   props<{
-    key: SortType,
-    direction: SortDirection
+    sortType: SortType
   }>()
 );
 

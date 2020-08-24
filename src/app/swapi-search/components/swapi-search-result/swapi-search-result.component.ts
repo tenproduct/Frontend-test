@@ -10,6 +10,9 @@ import { SortDirection } from '../../enums/sort-direction.enum';
 })
 export class SwapiSearchResultComponent implements OnInit {
 
+  readonly sortTypes = SortType;
+  readonly sortDirections = SortDirection;
+
   @Input() characters: Character[];
   @Input() sortType: SortType;
   @Input() sortDirection: SortDirection;
@@ -27,7 +30,7 @@ export class SwapiSearchResultComponent implements OnInit {
   }
 
   onChangeSorting(event: any, selectedSorting: SortType | SortDirection): void {
-    this.startSearchCharacter.emit(selectedSorting);
+    this.changeSorting.emit(selectedSorting);
   }
 
   onGetNextPage() {

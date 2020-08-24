@@ -13,7 +13,7 @@ export class SwapiSearchFormComponent implements OnInit, OnDestroy {
   private readonly destroy$ = new Subject<void>();
 
   searchForm: FormGroup;
-  
+
   @Output() searchCharacter: EventEmitter<string> = new EventEmitter();
 
   constructor(

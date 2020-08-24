@@ -1,0 +1,14 @@
+:host {
+  display: block;
+  margin: 20px 0;
+  
+  .result-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: calc(99% - 32px); // near full screen - card padding both sides
+    margin: 0 auto;
+  }
+}

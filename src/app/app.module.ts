@@ -24,6 +24,7 @@ import * as fromCharacters from './swapi-search/store/characters.reducer';
 import { CharacterEffects } from './swapi-search/store/characters.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatProgressSpinnerModule,
     MatSelectModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule,
   ],
   providers: [SwapiService],
   bootstrap: [AppComponent]

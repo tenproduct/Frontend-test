@@ -2,16 +2,20 @@ import { Injectable } from '@angular/core';
 import * as CharacterActions from './characters.actions';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { SwapiService } from '../services/swapi.service';
-import { switchMap, catchError, map, tap } from 'rxjs/operators';
+import { switchMap, catchError, map, tap, withLatestFrom } from 'rxjs/operators';
 import { PplResponse } from '../models/swapi-ppl-response.model';
 import { of } from 'rxjs';
+import * as fromApp from '../../store/app.reducer';
+import { Store } from '@ngrx/store';
+
 
 @Injectable()
 export class CharacterEffects {
 
   constructor(
     private actions$: Actions,
-    private swapiService: SwapiService
+    private swapiService: SwapiService,
+    private store: Store<fromApp.AppState>
   ) { }
 
   fetchCharacters$ = createEffect(() =>
@@ -39,8 +43,9 @@ export class CharacterEffects {
   fetchNextPage$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CharacterActions.fetchNextPage),
-      switchMap((action) => {
-        return this.swapiService.fetchCharacters(action.nextPageUrl)
+      withLatestFrom(this.store.select('characters')),
+      switchMap(([action, state]) => {
+        return this.swapiService.fetchCharacters(state.nextPage)
           .pipe(
             map((response: PplResponse) => {
               return CharacterActions.fetchNextPageSuccess({

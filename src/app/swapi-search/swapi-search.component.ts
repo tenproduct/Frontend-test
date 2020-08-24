@@ -86,6 +86,17 @@ export class SwapiSearchComponent implements OnInit, OnDestroy {
       takeUntil(this.destroy$),
       select(fromCharacterSelectors.selectErrorMsg)
     );
+  }
 
+  searchCharacter(searchTerm: string): void {
+    this.store.dispatch(CharacterActions.searchCharacters({ searchTerm }));
+  }
+
+  sortCharacterData(selectedSorting: SortType): void {
+    this.store.dispatch(CharacterActions.sortCharacters({ sortType: selectedSorting }));
+  }
+
+  fetchNextPage(): void {
+    this.store.dispatch(CharacterActions.fetchNextPage());
   }
 }

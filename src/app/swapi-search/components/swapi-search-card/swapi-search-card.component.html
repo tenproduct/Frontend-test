@@ -1,1 +1,23 @@
-<p>swapi-search-card works!</p>
+<mat-card class="mat-elevation-z4" >
+  <mat-card-header class="sw-card-header">
+    <mat-card-title>{{ character.name }}</mat-card-title>
+  </mat-card-header>
+  <img *ngIf="isOdd else evenImage" mat-card-image src="./../assets//mock-image.png">
+  <mat-card-content>
+    <div class="details">
+      <span>Gender: {{ character.gender }}</span>
+      <span>Height: {{ character.height }}</span>
+      <span>Mass: {{ character.mass }}</span>
+      <span>Birth Year: {{ character.birth_year }}</span>
+      <span>Homeworld: {{ character.homeworld }}</span>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>DETAILS</button>
+  </mat-card-actions>
+</mat-card>
+
+<ng-template #evenImage>
+  <img mat-card-image src="./../assets//mock-image-1.png">
+</ng-template>
+

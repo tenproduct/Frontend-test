@@ -1,1 +1,19 @@
-<p>swapi-search-result works!</p>
+<app-swapi-search-form (searchCharacter)="onSearchCharacter($event)"></app-swapi-search-form>
+
+<div class="sort-container">
+  <div>Sort by: </div>
+  <button mat-button mat-raised-button (click)="onChangeSorting($event, sortTypes.NAME)">Name</button>
+  <button mat-button mat-raised-button (click)="onChangeSorting($event, sortTypes.GENDER)">Gender</button>
+</div>
+
+<div class="result-container">
+  <ng-container *ngFor="let character of characters; let odd = odd;">
+  <app-swapi-search-card
+    [character]="character"
+    [isOdd]="odd"
+  >
+  </app-swapi-search-card>
+
+  </ng-container>
+</div>
+

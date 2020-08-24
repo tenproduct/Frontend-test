@@ -1,5 +1,13 @@
-<p>swapi-search works!</p>
+<div class="container">
 
-<pre>
-  {{ sortedCharacterData$ | async | json }}
-</pre>
+  <app-swapi-search-result
+    [characters]="sortedCharacterData$ | async"
+    [sortType]="sortType$ | async"
+    [sortDirection]="sortDirection$ | async"
+    (startSearchCharacter)="searchCharacter($event)"
+    (changeSorting)="sortCharacterData($event)"
+    (getNextPage)="fetchNextPage()"
+  >
+  </app-swapi-search-result>
+</div>
+

@@ -1,4 +1,4 @@
-<form (mgSubmit)="submitSearch()" novalidate autocomplete="off">
+<form class="search-bar" (mgSubmit)="submitSearch()" novalidate autocomplete="off">
   <mat-form-field class="full-width">
     <mat-label>Search Character</mat-label>
     <input matInput [formControl]="searchForm.get('searchTerm')" placeholder="Search Character">

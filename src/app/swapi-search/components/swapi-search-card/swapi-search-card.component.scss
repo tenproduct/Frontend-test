@@ -1,0 +1,19 @@
+:host {
+  mat-card {
+    width: 250px;
+    margin: 12px 8px;
+
+    .sw-card-header {
+      margin: 0 -16px;
+    }
+
+    .details {
+      span {
+        display: inline-block;
+        vertical-align: middle;
+        width: 50%;
+        font-size: 14px;
+      }
+    }
+  }
+}
