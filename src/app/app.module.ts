@@ -18,6 +18,11 @@ import { SwapiSearchFormComponent } from './swapi-search/components/swapi-search
 import { SwapiSearchResultComponent } from './swapi-search/components/swapi-search-result/swapi-search-result.component';
 import { StoreModule } from '@ngrx/store';
 import { SwapiService } from './swapi-search/services/swapi.service';
+import { EffectsModule } from '@ngrx/effects';
+import { environment } from 'src/environments/environment';
+import * as fromCharacters from './swapi-search/store/characters.reducer';
+import { CharacterEffects } from './swapi-search/store/characters.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -30,7 +35,9 @@ import { SwapiService } from './swapi-search/services/swapi.service';
   imports: [
     BrowserModule,
     HttpClientModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot({characters: fromCharacters.characterReducer}),
+    EffectsModule.forRoot([CharacterEffects]),
+    StoreDevtoolsModule.instrument({ logOnly: environment.production }),
     MatToolbarModule,
     BrowserAnimationsModule,
     MatCardModule,

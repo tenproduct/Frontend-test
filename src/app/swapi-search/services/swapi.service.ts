@@ -15,8 +15,18 @@ export class SwapiService {
 
   private readonly serviceBaseUrl: string = `${environment.apiUrl}/people/`;
 
-  fetchCharacters(pagingUrl?: string): Observable<PplResponse>  {
+  fetchCharacters(pagingUrl?: string): Observable<PplResponse> {
     const fetchUrl = pagingUrl ? pagingUrl : `${this.serviceBaseUrl}`;
+
+    return this.http.get<PplResponse>(`${fetchUrl}`)
+    .pipe(
+      take(1),
+      map((iResult: IPplResponse) => new PplResponse(iResult))
+    );
+  }
+
+  searchCharacters(searchTerm: string) {
+    const fetchUrl = `${this.serviceBaseUrl}?search=${searchTerm}`;
 
     return this.http.get<PplResponse>(`${fetchUrl}`)
     .pipe(

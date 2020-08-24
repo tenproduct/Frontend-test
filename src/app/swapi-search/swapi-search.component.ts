@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SwapiService } from './services/swapi.service';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../store/app.reducer';
+import * as CharacterActions from './store/characters.actions';
 
 @Component({
   selector: 'app-swapi-search',
@@ -9,7 +11,7 @@ import { SwapiService } from './services/swapi.service';
 export class SwapiSearchComponent implements OnInit {
 
   constructor(
-    private swapiService: SwapiService
+    private store: Store<fromApp.AppState>
   ) { }
 
   ngOnInit() {
@@ -17,9 +19,10 @@ export class SwapiSearchComponent implements OnInit {
   }
 
   private fetchData() {
-    this.swapiService.fetchCharacters()
-      .subscribe(response => {
-        console.log(response);
-      });
+    this.store.dispatch(CharacterActions.fetchCharacters());
+
+    this.store.select('characters').subscribe(characterState => {
+      console.warn(characterState);
+    });
   }
 }
