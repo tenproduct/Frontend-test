@@ -1,1 +1,9 @@
-<p>swapi-search-form works!</p>
+<form (mgSubmit)="submitSearch()" novalidate autocomplete="off">
+  <mat-form-field class="full-width">
+    <mat-label>Search Character</mat-label>
+    <input matInput [formControl]="searchForm.get('searchTerm')" placeholder="Search Character">
+    <mat-error *ngIf="searchForm.hasError('searchTerm')">
+      Please enter a valid email address
+    </mat-error>
+  </mat-form-field>
+</form>

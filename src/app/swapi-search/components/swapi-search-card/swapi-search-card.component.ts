@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Character } from '../../models/swapi-ppl-character.model';
 
 @Component({
   selector: 'app-swapi-search-card',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./swapi-search-card.component.scss']
 })
 export class SwapiSearchCardComponent implements OnInit {
+
+  @Input() character: Character;
+  @Input() isOdd: boolean;
 
   constructor() { }
 

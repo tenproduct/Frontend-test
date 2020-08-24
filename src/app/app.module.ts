@@ -23,6 +23,7 @@ import { environment } from 'src/environments/environment';
 import * as fromCharacters from './swapi-search/store/characters.reducer';
 import { CharacterEffects } from './swapi-search/store/characters.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     MatDividerModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
-    MatSelectModule
+    MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [SwapiService],
   bootstrap: [AppComponent]
