@@ -4,8 +4,10 @@
     [characters]="sortedCharacterData$ | async"
     [sortType]="sortType$ | async"
     [sortDirection]="sortDirection$ | async"
-    (startSearchCharacter)="searchCharacter($event)"
     [totalCount]="totalCount$ | async"
+    [nextPage]="nextPage$ | async"
+    [isLoading]="isLoading$ | async"
+    (startSearchCharacter)="searchCharacter($event)"
     (changeSorting)="sortCharacterData($event)"
     (getNextPage)="fetchNextPage()"
   >

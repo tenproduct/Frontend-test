@@ -62,6 +62,7 @@ const _characterReducer = createReducer(
         ...state.characterData,
         ...action.response.results
       ],
+      isLoading: false,
       nextPage: action.response.next,
       previousPage: action.response.previous,
     })

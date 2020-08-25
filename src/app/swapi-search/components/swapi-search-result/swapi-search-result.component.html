@@ -19,12 +19,18 @@
 
 <div class="result-container">
   <ng-container *ngFor="let character of characters; let odd = odd;">
-    <app-swapi-search-card [character]="character" [isOdd]="odd">
-    </app-swapi-search-card>
-
+    <app-swapi-search-card [character]="character" [isOdd]="odd"></app-swapi-search-card>
   </ng-container>
+</div>
+
+<div class="load-more-button-container">
+  <button mat-button mat-raised-button color="secondary" (click)="onGetNextPage()">Load More</button>
 </div>
 
 <ng-template #backwardsIcon>
   <mat-icon>keyboard_arrow_up</mat-icon>
 </ng-template>
+
+<div class="spinner-container" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>

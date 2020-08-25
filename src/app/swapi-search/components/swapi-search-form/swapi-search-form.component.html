@@ -3,7 +3,7 @@
     <mat-label>Search Character</mat-label>
     <input matInput [formControl]="searchForm.get('searchTerm')" placeholder="Search Character">
     <mat-error *ngIf="searchForm.get('searchTerm').invalid">
-      Please write at least 3 characters
+      Please fill in the input in order to search for a character.
     </mat-error>
   </mat-form-field>
 

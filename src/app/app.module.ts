@@ -47,8 +47,6 @@ import { MatIconModule } from '@angular/material/icon';
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
-    MatDividerModule,
-    MatPaginatorModule,
     MatProgressSpinnerModule,
     MatSelectModule,
     FormsModule,
