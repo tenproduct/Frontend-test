@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SwapiSearchCardComponent } from './swapi-search-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { Character } from '../../models/swapi-ppl-character.model';

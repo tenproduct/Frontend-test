@@ -9,8 +9,6 @@
     [isLoading]="isLoading$ | async"
     (startSearchCharacter)="searchCharacter($event)"
     (changeSorting)="sortCharacterData($event)"
-    (getNextPage)="fetchNextPage()"
-  >
+    (getNextPage)="fetchNextPage()">
   </app-swapi-search-result>
 </div>
-

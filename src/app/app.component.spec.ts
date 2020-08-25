@@ -13,6 +13,7 @@ import { MatCardModule } from '@angular/material/card';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { SortType } from './swapi-search/enums/sort-type.enum';
 import { SortDirection } from './swapi-search/enums/sort-direction.enum';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 describe('AppComponent', () => {
   let store: MockStore<any>;
@@ -43,7 +44,8 @@ describe('AppComponent', () => {
         MatInputModule,
         ReactiveFormsModule,
         FormsModule,
-        MatCardModule
+        MatCardModule,
+        MatProgressSpinnerModule
       ],
       providers: [
         MockStore,

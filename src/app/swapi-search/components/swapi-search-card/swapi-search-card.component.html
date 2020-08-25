@@ -2,7 +2,7 @@
   <mat-card-header class="sw-card-header">
     <mat-card-title>{{ character.name }}</mat-card-title>
   </mat-card-header>
-  <img *ngIf="isOdd else evenImage" mat-card-image src="./../assets//mock-image.png">
+  <img *ngIf="isOdd else evenImage" mat-card-image src="./../assets/mock-image-1.png">
   <mat-card-content>
     <div class="details">
       <span>Gender: {{ character.gender }}</span>
@@ -17,6 +17,5 @@
 </mat-card>
 
 <ng-template #evenImage>
-  <img mat-card-image src="./../assets//mock-image-1.png">
+  <img mat-card-image src="./../assets//mock-image.png">
 </ng-template>
-

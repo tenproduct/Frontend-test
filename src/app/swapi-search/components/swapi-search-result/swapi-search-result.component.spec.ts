@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 describe('SwapiSearchResultComponent', () => {
   let component: SwapiSearchResultComponent;
@@ -30,7 +31,8 @@ describe('SwapiSearchResultComponent', () => {
         FormsModule,
         ReactiveFormsModule,
         MatCardModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        MatProgressSpinnerModule
       ]
     })
     .compileComponents();

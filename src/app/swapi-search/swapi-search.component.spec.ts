@@ -13,9 +13,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { SortType } from './enums/sort-type.enum';
 import { SortDirection } from './enums/sort-direction.enum';
-import { of } from 'rxjs';
-import { Character } from './models/swapi-ppl-character.model';
-import { characterMock } from './mocks/character.test.mock';
 
 describe('SwapiSearchComponent', () => {
   let component: SwapiSearchComponent;
