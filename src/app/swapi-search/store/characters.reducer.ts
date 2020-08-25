@@ -47,7 +47,7 @@ const _characterReducer = createReducer(
       ...state,
       error: null,
       isLoading: false,
-      resultCount: action.response.count,
+      totalCount: action.response.count,
       nextPage: action.response.next,
       previousPage: action.response.previous,
       characterData: action.response.results

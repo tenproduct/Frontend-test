@@ -1,19 +1,30 @@
 <app-swapi-search-form (searchCharacter)="onSearchCharacter($event)"></app-swapi-search-form>
 
 <div class="sort-container">
-  <div>Sort by: </div>
-  <button mat-button mat-raised-button (click)="onChangeSorting($event, sortTypes.NAME)">Name</button>
-  <button mat-button mat-raised-button (click)="onChangeSorting($event, sortTypes.GENDER)">Gender</button>
+  <div class="sort-title">
+    Showing <strong>{{ characters.length }}</strong> of characters out of <strong>{{ totalCount }}</strong>
+    <p><i>Sort by:</i></p>
+  </div>
+  <button mat-button mat-raised-button (click)="onChangeSorting($event, sortTypes.NAME)">Name
+    <ng-container *ngIf="sortType === sortTypes.NAME">
+      <mat-icon *ngIf="sortDirection === sortDirections.ONWARDS else backwardsIcon">keyboard_arrow_down</mat-icon>
+    </ng-container>
+  </button>
+  <button mat-button mat-raised-button (click)="onChangeSorting($event, sortTypes.GENDER)">Gender
+    <ng-container *ngIf="sortType === sortTypes.GENDER">
+      <mat-icon *ngIf="sortDirection === sortDirections.ONWARDS else backwardsIcon">keyboard_arrow_down</mat-icon>
+    </ng-container>
+  </button>
 </div>
 
 <div class="result-container">
   <ng-container *ngFor="let character of characters; let odd = odd;">
-  <app-swapi-search-card
-    [character]="character"
-    [isOdd]="odd"
-  >
-  </app-swapi-search-card>
+    <app-swapi-search-card [character]="character" [isOdd]="odd">
+    </app-swapi-search-card>
 
   </ng-container>
 </div>
 
+<ng-template #backwardsIcon>
+  <mat-icon>keyboard_arrow_up</mat-icon>
+</ng-template>

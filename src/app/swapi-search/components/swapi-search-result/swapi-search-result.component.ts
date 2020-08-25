@@ -16,6 +16,7 @@ export class SwapiSearchResultComponent implements OnInit {
   @Input() characters: Character[];
   @Input() sortType: SortType;
   @Input() sortDirection: SortDirection;
+  @Input() totalCount: number;
   @Output() startSearchCharacter: EventEmitter<string> = new EventEmitter();
   @Output() changeSorting: EventEmitter<SortType | SortDirection> = new EventEmitter();
   @Output() getNextPage: EventEmitter<void> = new EventEmitter();

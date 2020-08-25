@@ -5,6 +5,7 @@
     [sortType]="sortType$ | async"
     [sortDirection]="sortDirection$ | async"
     (startSearchCharacter)="searchCharacter($event)"
+    [totalCount]="totalCount$ | async"
     (changeSorting)="sortCharacterData($event)"
     (getNextPage)="fetchNextPage()"
   >

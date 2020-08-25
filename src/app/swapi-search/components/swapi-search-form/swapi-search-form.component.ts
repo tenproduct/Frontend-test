@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { takeUntil, debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-swapi-search-form',
@@ -31,13 +30,13 @@ export class SwapiSearchFormComponent implements OnInit, OnDestroy {
 
   private createForms(): void {
     this.searchForm = this.formBuilder.group({
-      searchTerm: ['', [Validators.minLength(3), Validators.required]]
+      searchTerm: ['', Validators.required]
     });
   }
 
-  submitSearch(searchTerm: string): void {
+  submitSearch(): void {
     if (this.searchForm.valid) {
-      this.searchCharacter.emit(searchTerm);
+      this.searchCharacter.emit(this.searchForm.value.searchTerm);
     } else {
       this.searchForm.markAllAsTouched();
       this.searchForm.markAsDirty();

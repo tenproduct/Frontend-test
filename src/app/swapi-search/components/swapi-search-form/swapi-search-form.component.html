@@ -1,9 +1,11 @@
-<form class="search-bar" (mgSubmit)="submitSearch()" novalidate autocomplete="off">
+<form class="search-bar" (ngSubmit)="submitSearch()" novalidate autocomplete="off">
   <mat-form-field class="full-width">
     <mat-label>Search Character</mat-label>
     <input matInput [formControl]="searchForm.get('searchTerm')" placeholder="Search Character">
-    <mat-error *ngIf="searchForm.hasError('searchTerm')">
-      Please enter a valid email address
+    <mat-error *ngIf="searchForm.get('searchTerm').invalid">
+      Please write at least 3 characters
     </mat-error>
   </mat-form-field>
+
+  <button class="search-submit" type="submit" mat-raised-button>Submit</button>
 </form>
