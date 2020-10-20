@@ -1,7 +1,11 @@
 .search-form {
   display: flex;
   flex-direction: column;
-  max-width: 20vw;
+  max-width: 40vw;
   align-items: center;
   margin: 10px auto;
+}
+
+mat-form-field {
+  width: 100%;
 }

@@ -1,11 +1,11 @@
 <div class="characters-list">
-  <mat-select class="sort" [(ngModel)]="sortOption">
+  <div>Showing {{ charactersToShow.length }} results of {{ numberOfCharacters }}</div>
+  <mat-select class="sort" [(ngModel)]="sortOption" placeholder="Sort by">
     <mat-option value="1">A - Z</mat-option>
     <mat-option value="2">Z - A</mat-option>
     <mat-option value="3">Male</mat-option>
     <mat-option value="4">Female</mat-option>
   </mat-select>
-  Number of characters: {{ numberOfCharacters }}
   <div class="list-container">
     <sw-character 
       *ngFor="let character of charactersToShow; index as i" 
@@ -14,5 +14,5 @@
     ></sw-character>
 
   </div>
-  <button mat-button color="primary" (click)=loadMore()>Load more...</button>
+  <button mat-raised-button color="primary" class="load-more" (click)=loadMore()>Load more...</button>
 </div>

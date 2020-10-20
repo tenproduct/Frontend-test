@@ -30,12 +30,10 @@ export class CharactersListComponent implements OnInit, OnChanges {
       case '4': {
         return this.characters.filter(character => character.gender === 'female') || [];
       }
-
       default: {
         return this.characters;
       }
     }
-
   }
 
   constructor(private starwarsService: StarwarsApiService) { }
