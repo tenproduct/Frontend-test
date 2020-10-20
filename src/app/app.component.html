@@ -1,1 +1,5 @@
 <mat-toolbar>{{title}}</mat-toolbar>
+<div class="container">
+  <sw-search (newSearch)="handleSearch($event)"></sw-search>
+  <sw-characters-list [searchTerm]="searchTerm"></sw-characters-list>
+</div>

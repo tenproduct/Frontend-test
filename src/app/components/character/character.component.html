@@ -1,1 +1,6 @@
-<mat-card>Character</mat-card>
+<mat-card class="character">
+  <img class="profile-picture" [src]="profilePicture" />
+  <div class="name">
+    {{ character.name }}
+  </div>
+</mat-card>

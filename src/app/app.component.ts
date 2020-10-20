@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Star Wars Character Search';
+  searchTerm: String = '';
+
+  handleSearch(value) {
+    this.searchTerm = value;
+  }
+
 }

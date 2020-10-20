@@ -1,1 +1,19 @@
-<p>search works!</p>
+<div class="search">
+  <form class="search-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Search character</mat-label>
+      <input 
+        matInput 
+        placeholder="Search character" 
+        [(ngModel)]="searchTerm" 
+        name="search">
+    </mat-form-field>
+    <button 
+      mat-raised-button 
+      color="primary"
+      (click)="searchCharacter()"
+      >
+      Search Character
+    </button>
+  </form>
+</div>
