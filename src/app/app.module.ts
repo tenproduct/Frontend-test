@@ -10,11 +10,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatProgressSpinnerModule, ProgressSpinnerMode } from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { CharacterComponent } from './components/character/character.component';
 import { SearchComponent } from './components/search/search.component';
 import { CharactersListComponent } from './components/characters-list/characters-list.component';
+import { StarwarsApiService } from './services/starwars-api.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { CharactersListComponent } from './components/characters-list/characters
     MatProgressSpinnerModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [StarwarsApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
