@@ -70,5 +70,4 @@ export class CharactersListComponent implements OnInit, OnChanges {
       this.isLoading = false;
     });
   }
-
 }
