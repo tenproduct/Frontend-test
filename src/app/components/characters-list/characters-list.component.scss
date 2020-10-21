@@ -10,6 +10,7 @@
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 2px;
+  border-radius: 2px;
 }
 
 .list-container {
@@ -23,4 +24,10 @@
 .load-more {
   width: 100%;
   margin-top: 10px;
+}
+
+.loader {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
 }

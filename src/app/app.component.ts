@@ -6,11 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Star Wars Character Search';
-  searchTerm: String = '';
+  title: string = 'Star Wars Character Search';
+  searchTerm: string = '';
 
-  handleSearch(value) {
+  handleSearch(value: string) {
     this.searchTerm = value;
   }
-
 }

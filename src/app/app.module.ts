@@ -10,6 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule, ProgressSpinnerMode } from '@angular/material/progress-spinner';
 
 import { CharacterComponent } from './components/character/character.component';
 import { SearchComponent } from './components/search/search.component';
@@ -33,6 +34,7 @@ import { CharactersListComponent } from './components/characters-list/characters
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    MatProgressSpinnerModule,
     BrowserAnimationsModule
   ],
   providers: [],

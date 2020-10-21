@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'sw-search',
@@ -6,10 +6,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent {
-  searchTerm: String = '';
-  @Output() newSearch = new EventEmitter<String>();
-
-  constructor() { }
+  searchTerm: string = '';
+  @Output() newSearch = new EventEmitter<string>();
 
   searchCharacter() {
     this.newSearch.emit(this.searchTerm);

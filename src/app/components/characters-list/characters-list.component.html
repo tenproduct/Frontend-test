@@ -12,7 +12,17 @@
       [character]="character" 
       [characterIndex]="i"
     ></sw-character>
-
   </div>
-  <button mat-raised-button color="primary" class="load-more" (click)=loadMore()>Load more...</button>
+  <button
+    mat-raised-button
+    color="primary"
+    class="load-more"
+    [disabled]="!hasNext"
+    (click)=loadMore()
+    >
+    Load more...
+    <span *ngIf="isLoading" class="loader">
+      <mat-spinner [diameter]="30" color="accent"></mat-spinner>
+    </span>
+  </button>
 </div>

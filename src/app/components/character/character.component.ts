@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'sw-character',
   templateUrl: './character.component.html',
   styleUrls: ['./character.component.scss']
 })
-export class CharacterComponent implements OnInit {
+export class CharacterComponent {
   @Input() character: Object;
   @Input() characterIndex: number = 0;
 
@@ -14,11 +14,4 @@ export class CharacterComponent implements OnInit {
       ? 'assets/mock-image.png'
       : 'assets/mock-image-1.png';
   }
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-
 }
