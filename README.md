@@ -13,7 +13,7 @@
 
 ## Requirements
 - [ ] On page load display all characters returned from the endpoint `https://swapi.dev/api/people/`
-  - [ ] Display the visible amount shown and the max result count
+  - [x] Display the visible amount shown and the max result count
 - [ ] Add a material select so the user can sort the results by:
   - [ ] A-Z
   - [ ] Z-A

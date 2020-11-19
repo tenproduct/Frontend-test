@@ -12,6 +12,7 @@ export class StarWarsService {
   private loadedPeople: Character[] = [];
   private peopleSubject: BehaviorSubject<Character[]> = new BehaviorSubject(this.loadedPeople);
   peopleList = this.peopleSubject.asObservable();
+  totalCharacters = 0;
 
   constructor(private network: NetworkService) { }
 
@@ -21,6 +22,7 @@ export class StarWarsService {
       .subscribe(
         (response: PeopleApiResponse) => {
           this.loadedPeople = response.results;
+          this.totalCharacters = response.count;
           this.peopleSubject.next(this.loadedPeople);
         },
         (error) => {

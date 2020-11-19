@@ -1,3 +1,7 @@
-<p>character-search works!</p>
-<mat-card>Sanity Check Card</mat-card>
-<mat-card *ngFor="let card of starWars.peopleList | async">{{ card.name }}</mat-card>
+<div *ngIf="starWars.peopleList | async as people; else noResults">
+    <p class="resultscount">Showing {{ people.length }} results of {{ starWars.totalCharacters}}</p>
+    <mat-card *ngFor="let card of people">{{ card.name }}</mat-card>
+</div>
+<ng-template #noResults>
+    No results yet!
+</ng-template>
