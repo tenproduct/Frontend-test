@@ -1,12 +1,21 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-character-search',
+  template: '',
+})
+class CharacterSearchStubComponent {
+}
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        CharacterSearchStubComponent,
       ],
       imports: [
         MatToolbarModule,
@@ -19,5 +28,4 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });
-
 });
