@@ -34,17 +34,21 @@ describe('StarWarsService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('init() should call into people API', (done) => {
+  it('init() should call into people API', () => {
+    const network = TestBed.inject(NetworkService);
+    spyOn(network, 'get').and.callThrough();
     service.peopleList.subscribe(
       (list) => {
-        expect(list).toEqual([characterStub]);
-        done();
+        // expect(list).toEqual([characterStub]);
+        // done();
       },
       () => { // fail on error
         fail();
       }
     );
+    expect(network.get).not.toHaveBeenCalled();
     service.init();
+    expect(network.get).toHaveBeenCalled();
   });
 
 });
