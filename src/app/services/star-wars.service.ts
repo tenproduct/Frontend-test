@@ -10,16 +10,22 @@ import { NetworkService } from './network.service';
 })
 export class StarWarsService {
   private loadedPeople: Character[] = [];
-  peopleList: BehaviorSubject<Character[]> = new BehaviorSubject(this.loadedPeople);
+  private peopleSubject: BehaviorSubject<Character[]> = new BehaviorSubject(this.loadedPeople);
+  peopleList = this.peopleSubject.asObservable();
 
   constructor(private network: NetworkService) { }
 
   init() {
     // TODO: extract API URL to global constant
     this.network.get<PeopleApiResponse>('https://swapi.dev/api/people/')
-      .subscribe((response: PeopleApiResponse) => {
-        this.loadedPeople = response.results;
-        this.peopleList.next(this.loadedPeople);
-      });
+      .subscribe(
+        (response: PeopleApiResponse) => {
+          this.loadedPeople = response.results;
+          this.peopleSubject.next(this.loadedPeople);
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
   }
 }
