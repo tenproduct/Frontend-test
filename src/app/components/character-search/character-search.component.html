@@ -3,6 +3,7 @@
     <mat-card *ngFor="let card of people">
         <mat-card-content>{{ card.name }}</mat-card-content>
     </mat-card>
+    <button mat-button *ngIf="starWars.nextUrl" (click)="starWars.next()">Load More</button>
 </div>
 <ng-template #noResults>
     No results yet!

@@ -51,4 +51,11 @@ describe('StarWarsService', () => {
     expect(network.get).toHaveBeenCalled();
   });
 
+  it('init() should load characters into store', () => {
+    pending('not tested yet');
+  });
+
+  it('next() should add new characters into store', () => {
+    pending('not tested yet');
+  });
 });

@@ -13,6 +13,7 @@ export class StarWarsService {
   private peopleSubject: BehaviorSubject<Character[]> = new BehaviorSubject(this.loadedPeople);
   peopleList = this.peopleSubject.asObservable();
   totalCharacters = 0;
+  nextUrl: string | null = null;
 
   constructor(private network: NetworkService) { }
 
@@ -23,6 +24,29 @@ export class StarWarsService {
         (response: PeopleApiResponse) => {
           this.loadedPeople = response.results;
           this.totalCharacters = response.count;
+          this.nextUrl = response.next;
+          this.peopleSubject.next(this.loadedPeople);
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+  }
+
+  next() {
+    if (!this.nextUrl) {
+      return;
+    }
+    // TODO: next URL is not verified, if API is hacked, we can silently be redirected elsewhere
+    this.network.get<PeopleApiResponse>(this.nextUrl)
+      .subscribe(
+        (response: PeopleApiResponse) => {
+          this.loadedPeople = [
+            ...this.loadedPeople,
+            ...response.results
+          ]
+          this.totalCharacters = response.count;
+          this.nextUrl = response.next;
           this.peopleSubject.next(this.loadedPeople);
         },
         (error) => {

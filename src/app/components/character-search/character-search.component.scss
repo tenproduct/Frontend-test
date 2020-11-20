@@ -27,4 +27,9 @@
         background-image: url('/assets/mock-image-1.png');
     }
 }
-    
+
+button {
+    clear: left;
+    width: 100%;
+    box-sizing: border-box;
+}
