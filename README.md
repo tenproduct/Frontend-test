@@ -19,8 +19,8 @@
   - [ ] Z-A
   - [ ] Male
   - [ ] Female
-- [ ] On each card in the results include an image `assets/mock-image.png` and display the character name below as shown in the design. 
-  - [ ] For every odd card use image `assets/mock-image-1.png`
+- [x] On each card in the results include an image `assets/mock-image.png` and display the character name below as shown in the design. 
+  - [x] For every odd card use image `assets/mock-image-1.png`
 - [ ] When the user clicks load more it should append the next set of results
 - [ ] When a user types a character name and clicks search, it should call `https://swapi.dev/api/people/?search=` and update the results.
 - [ ] The page should be responsive, ensure the layout looks respectable on mobile and tablet viewpoints.

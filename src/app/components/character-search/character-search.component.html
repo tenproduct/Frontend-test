@@ -1,6 +1,8 @@
 <div *ngIf="starWars.peopleList | async as people; else noResults">
     <p class="resultscount">Showing {{ people.length }} results of {{ starWars.totalCharacters}}</p>
-    <mat-card *ngFor="let card of people">{{ card.name }}</mat-card>
+    <mat-card *ngFor="let card of people">
+        <mat-card-content>{{ card.name }}</mat-card-content>
+    </mat-card>
 </div>
 <ng-template #noResults>
     No results yet!
