@@ -15,6 +15,14 @@ import { CharacterSearchComponent } from './character-search.component';
 class MatCardStubComponent {
 }
 
+@Component({
+  // tslint:disable-next-line: component-selector
+  selector: 'mat-card-content',
+  template: '',
+})
+class MatCardContentStubComponent {
+}
+
 describe('CharacterSearchComponent', () => {
   let component: CharacterSearchComponent;
   let fixture: ComponentFixture<CharacterSearchComponent>;
@@ -29,6 +37,7 @@ describe('CharacterSearchComponent', () => {
       declarations: [
         CharacterSearchComponent,
         MatCardStubComponent,
+        MatCardContentStubComponent,
       ],
       providers: [
         {
