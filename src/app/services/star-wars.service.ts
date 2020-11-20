@@ -11,7 +11,7 @@ import { NetworkService } from './network.service';
 export class StarWarsService {
   private loadedPeople: Character[] = [];
   private peopleSubject: BehaviorSubject<Character[]> = new BehaviorSubject(this.loadedPeople);
-  peopleList = this.peopleSubject.asObservable();
+  peopleList$ = this.peopleSubject.asObservable();
   totalCharacters = 0;
   nextUrl: string | null = null;
 
@@ -44,7 +44,7 @@ export class StarWarsService {
           this.loadedPeople = [
             ...this.loadedPeople,
             ...response.results
-          ]
+          ];
           this.totalCharacters = response.count;
           this.nextUrl = response.next;
           this.peopleSubject.next(this.loadedPeople);

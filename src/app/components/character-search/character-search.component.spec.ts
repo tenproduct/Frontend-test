@@ -63,7 +63,7 @@ describe('CharacterSearchComponent', () => {
   const helperSubject = new BehaviorSubject<Character[]>([]);
   const starWarsServiceSpy = {
     ...jasmine.createSpyObj('StarWarsServiceSpy', ['init']),
-    peopleList: helperSubject.asObservable(),
+    peopleList$: helperSubject.asObservable(),
     totalCharacters: 0
   } as jasmine.SpyObj<StarWarsService>;
 

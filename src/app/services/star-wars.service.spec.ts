@@ -37,7 +37,7 @@ describe('StarWarsService', () => {
   it('init() should call into people API', () => {
     const network = TestBed.inject(NetworkService);
     spyOn(network, 'get').and.callThrough();
-    service.peopleList.subscribe(
+    service.peopleList$.subscribe(
       (list) => {
         // expect(list).toEqual([characterStub]);
         // done();

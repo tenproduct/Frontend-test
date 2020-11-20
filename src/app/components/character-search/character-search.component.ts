@@ -18,7 +18,7 @@ export class CharacterSearchComponent implements OnInit {
 
   constructor(public starWars: StarWarsService) {
     // tslint:disable-next-line: deprecation
-    this.resultsList = combineLatest([starWars.peopleList, this.sortSubject])
+    this.resultsList = combineLatest([starWars.peopleList$, this.sortSubject])
       .pipe(
         map(([people, sort]): Character[] => {
           switch (sort) {
