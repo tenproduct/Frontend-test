@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { of } from 'rxjs';
-import { characterStub } from 'src/app/models/character';
+import { BehaviorSubject } from 'rxjs';
+import { Character, characterStub } from 'src/app/models/character';
 
 import { StarWarsService } from 'src/app/services/star-wars.service';
 import { CharacterSearchComponent } from './character-search.component';
@@ -60,9 +60,10 @@ class MatOptionStubComponent {
 describe('CharacterSearchComponent', () => {
   let component: CharacterSearchComponent;
   let fixture: ComponentFixture<CharacterSearchComponent>;
+  const helperSubject = new BehaviorSubject<Character[]>([]);
   const starWarsServiceSpy = {
     ...jasmine.createSpyObj('StarWarsServiceSpy', ['init']),
-    peopleList: of(),
+    peopleList: helperSubject.asObservable(),
     totalCharacters: 0
   } as jasmine.SpyObj<StarWarsService>;
 
@@ -99,22 +100,17 @@ describe('CharacterSearchComponent', () => {
   it('should display the visible amount shown and the max result count', async(() => {
     // GIVEN
     starWarsServiceSpy.totalCharacters = 5;
-    starWarsServiceSpy.peopleList = of([
+    helperSubject.next([
       characterStub,
       { ...characterStub, name: 'C-3PO' }
     ]);
-    // ERROR: Property peopleList does not have access type get
-    // spyOnProperty(starWarsServiceSpy, 'peopleList', 'get').and.returnValue(of([
-    //   characterStub,
-    //   { ...characterStub, name: 'C-3PO' }
-    // ]));
 
     // WHEN
     fixture.detectChanges();
-    fixture.whenRenderingDone().then(() => {
-      const statusMessage = fixture.debugElement.query(By.css('.resultscount'));
 
-      // THEN
+    // THEN
+    fixture.whenStable().then(() => {
+      const statusMessage = fixture.debugElement.query(By.css('.resultscount'));
       expect(statusMessage).toBeTruthy();
       expect(statusMessage.nativeElement.textContent).toEqual('Showing 2 results of 5');
     });
