@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
@@ -23,6 +23,40 @@ class MatCardStubComponent {
 class MatCardContentStubComponent {
 }
 
+@Component({
+  // tslint:disable-next-line: component-selector
+  selector: 'mat-form-field',
+  template: '',
+})
+class MatFormFieldStubComponent {
+}
+
+@Component({
+  // tslint:disable-next-line: component-selector
+  selector: 'mat-label',
+  template: '',
+})
+class MatLabelStubComponent {
+}
+
+@Component({
+  // tslint:disable-next-line: component-selector
+  selector: 'mat-select',
+  template: '',
+})
+class MatSelectStubComponent {
+}
+
+@Component({
+  // tslint:disable-next-line: component-selector
+  selector: 'mat-option',
+  template: '',
+})
+class MatOptionStubComponent {
+  @Input()
+  value: any;
+}
+
 describe('CharacterSearchComponent', () => {
   let component: CharacterSearchComponent;
   let fixture: ComponentFixture<CharacterSearchComponent>;
@@ -38,6 +72,10 @@ describe('CharacterSearchComponent', () => {
         CharacterSearchComponent,
         MatCardStubComponent,
         MatCardContentStubComponent,
+        MatFormFieldStubComponent,
+        MatLabelStubComponent,
+        MatOptionStubComponent,
+        MatSelectStubComponent,
       ],
       providers: [
         {
@@ -58,7 +96,7 @@ describe('CharacterSearchComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display the visible amount shown and the max result count', () => {
+  it('should display the visible amount shown and the max result count', async(() => {
     // GIVEN
     starWarsServiceSpy.totalCharacters = 5;
     starWarsServiceSpy.peopleList = of([
@@ -73,10 +111,12 @@ describe('CharacterSearchComponent', () => {
 
     // WHEN
     fixture.detectChanges();
-    const statusMessage = fixture.debugElement.query(By.css('.resultscount'));
+    fixture.whenRenderingDone().then(() => {
+      const statusMessage = fixture.debugElement.query(By.css('.resultscount'));
 
-    // THEN
-    expect(statusMessage).toBeTruthy();
-    expect(statusMessage.nativeElement.textContent).toEqual('Showing 2 results of 5');
-  });
+      // THEN
+      expect(statusMessage).toBeTruthy();
+      expect(statusMessage.nativeElement.textContent).toEqual('Showing 2 results of 5');
+    });
+  }));
 });

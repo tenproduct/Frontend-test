@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
+
 import { StarWarsService } from 'src/app/services/star-wars.service';
+import { SortOptions } from 'src/app/models/sort-options.enum';
+import { Character } from 'src/app/models/character';
 
 @Component({
   selector: 'app-character-search',
@@ -7,11 +11,35 @@ import { StarWarsService } from 'src/app/services/star-wars.service';
   styleUrls: ['./character-search.component.scss']
 })
 export class CharacterSearchComponent implements OnInit {
+  sortOptions = Object.values(SortOptions);
+  sortSubject = new BehaviorSubject<SortOptions | null>(null);
+  resultsList: Observable<Character[]>;
 
-  constructor(public starWars: StarWarsService) { }
+  constructor(public starWars: StarWarsService) {
+    // tslint:disable-next-line: deprecation
+    this.resultsList = combineLatest(
+      [starWars.peopleList, this.sortSubject],
+      (people: Character[], sort: SortOptions | null): Character[] => {
+        switch (sort) {
+          case SortOptions.AtoZ:
+            return people.sort((a, b) => a.name.localeCompare(b.name));
+          case SortOptions.ZtoA:
+            return people.sort((a, b) => b.name.localeCompare(a.name));
+          default:
+            return people;
+        }
+      }
+    );
+  }
 
   ngOnInit(): void {
+    this.sortSubject.next(null);
     this.starWars.init();
+  }
+
+  sort(order: SortOptions) {
+    console.log(order);
+    this.sortSubject.next(order);
   }
 
 }

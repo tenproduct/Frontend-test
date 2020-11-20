@@ -1,4 +1,12 @@
-<div *ngIf="starWars.peopleList | async as people; else noResults">
+<div *ngIf="resultsList | async as people; else noResults">
+    <mat-form-field>
+        <mat-label>Search options</mat-label>
+        <mat-select (selectionChange)="sort($event.value)">
+            <mat-option *ngFor="let option of sortOptions" [value]="option">
+                {{ option }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
     <p class="resultscount">Showing {{ people.length }} results of {{ starWars.totalCharacters}}</p>
     <mat-card *ngFor="let card of people">
         <mat-card-content>{{ card.name }}</mat-card-content>
