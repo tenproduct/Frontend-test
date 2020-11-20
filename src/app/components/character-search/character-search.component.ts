@@ -25,6 +25,10 @@ export class CharacterSearchComponent implements OnInit {
             return people.sort((a, b) => a.name.localeCompare(b.name));
           case SortOptions.ZtoA:
             return people.sort((a, b) => b.name.localeCompare(a.name));
+          case SortOptions.Male:
+            return people.filter((character) => character.gender.toLowerCase() === 'male');
+          case SortOptions.Female:
+            return people.filter((character) => character.gender.toLowerCase() === 'female');
           default:
             return people;
         }
@@ -38,7 +42,6 @@ export class CharacterSearchComponent implements OnInit {
   }
 
   sort(order: SortOptions) {
-    console.log(order);
     this.sortSubject.next(order);
   }
 

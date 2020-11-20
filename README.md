@@ -14,11 +14,11 @@
 ## Requirements
 - [ ] On page load display all characters returned from the endpoint `https://swapi.dev/api/people/`
   - [x] Display the visible amount shown and the max result count
-- [ ] Add a material select so the user can sort the results by:
+- [x] Add a material select so the user can sort the results by:
   - [x] A-Z
   - [x] Z-A
-  - [ ] Male
-  - [ ] Female
+  - [x] Male
+  - [x] Female
 - [x] On each card in the results include an image `assets/mock-image.png` and display the character name below as shown in the design. 
   - [x] For every odd card use image `assets/mock-image-1.png`
 - [x] When the user clicks load more it should append the next set of results
