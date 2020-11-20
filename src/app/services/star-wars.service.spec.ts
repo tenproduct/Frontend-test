@@ -5,21 +5,9 @@ import { characterStub } from '../models/character';
 import { NetworkService } from './network.service';
 import { StarWarsService } from './star-wars.service';
 
-const MockNetworkService = {
-  get: () => {
-    return of({
-      count: 1,
-      next: null,
-      previous: null,
-      results: [
-        characterStub
-      ]
-    });
-  }
-};
-
 describe('StarWarsService', () => {
   let service: StarWarsService;
+  const MockNetworkService: jasmine.SpyObj<NetworkService> = jasmine.createSpyObj<NetworkService>('MockNetworkService', ['get']);
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -36,16 +24,17 @@ describe('StarWarsService', () => {
 
   it('init() should call into people API', () => {
     const network = TestBed.inject(NetworkService);
-    spyOn(network, 'get').and.callThrough();
-    service.peopleList$.subscribe(
-      (list) => {
-        // expect(list).toEqual([characterStub]);
-        // done();
-      },
-      () => { // fail on error
-        fail();
-      }
+    MockNetworkService.get.and.returnValue(
+      of({
+        count: 1,
+        next: null,
+        previous: null,
+        results: [
+          characterStub
+        ]
+      })
     );
+
     expect(network.get).not.toHaveBeenCalled();
     service.init();
     expect(network.get).toHaveBeenCalled();
