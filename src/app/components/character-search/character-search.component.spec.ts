@@ -97,7 +97,7 @@ describe('CharacterSearchComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display the visible amount shown and the max result count', async(() => {
+  it('should display the visible amount shown and the max result count', () => {
     // GIVEN
     starWarsServiceSpy.totalCharacters = 5;
     helperSubject.next([
@@ -109,10 +109,9 @@ describe('CharacterSearchComponent', () => {
     fixture.detectChanges();
 
     // THEN
-    fixture.whenStable().then(() => {
-      const statusMessage = fixture.debugElement.query(By.css('.resultscount'));
-      expect(statusMessage).toBeTruthy();
-      expect(statusMessage.nativeElement.textContent).toEqual('Showing 2 results of 5');
-    });
-  }));
+    // ngOnInit() and template rendering is actually synchronous so '| async' is subscribing to synchronous observables
+    const statusMessage = fixture.debugElement.query(By.css('.resultscount'));
+    expect(statusMessage).toBeTruthy();
+    expect(statusMessage.nativeElement.textContent).toEqual('Showing 2 results of 5');
+  });
 });
