@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { StarWarsService } from 'src/app/services/star-wars.service';
 import { SortOptions } from 'src/app/models/sort-options.enum';
@@ -17,23 +18,23 @@ export class CharacterSearchComponent implements OnInit {
 
   constructor(public starWars: StarWarsService) {
     // tslint:disable-next-line: deprecation
-    this.resultsList = combineLatest(
-      [starWars.peopleList, this.sortSubject],
-      (people: Character[], sort: SortOptions | null): Character[] => {
-        switch (sort) {
-          case SortOptions.AtoZ:
-            return people.sort((a, b) => a.name.localeCompare(b.name));
-          case SortOptions.ZtoA:
-            return people.sort((a, b) => b.name.localeCompare(a.name));
-          case SortOptions.Male:
-            return people.filter((character) => character.gender.toLowerCase() === 'male');
-          case SortOptions.Female:
-            return people.filter((character) => character.gender.toLowerCase() === 'female');
-          default:
-            return people;
-        }
-      }
-    );
+    this.resultsList = combineLatest([starWars.peopleList, this.sortSubject])
+      .pipe(
+        map(([people, sort]): Character[] => {
+          switch (sort) {
+            case SortOptions.AtoZ:
+              return people.sort((a, b) => a.name.localeCompare(b.name));
+            case SortOptions.ZtoA:
+              return people.sort((a, b) => b.name.localeCompare(a.name));
+            case SortOptions.Male:
+              return people.filter((character) => character.gender.toLowerCase() === 'male');
+            case SortOptions.Female:
+              return people.filter((character) => character.gender.toLowerCase() === 'female');
+            default:
+              return people;
+          }
+        })
+      );
   }
 
   ngOnInit(): void {
