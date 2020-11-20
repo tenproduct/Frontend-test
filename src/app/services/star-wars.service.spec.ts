@@ -10,6 +10,7 @@ describe('StarWarsService', () => {
   const MockNetworkService: jasmine.SpyObj<NetworkService> = jasmine.createSpyObj<NetworkService>('MockNetworkService', ['get']);
 
   beforeEach(() => {
+    MockNetworkService.get.calls.reset();
     TestBed.configureTestingModule({
       providers: [
         { provide: NetworkService, useValue: MockNetworkService }
@@ -41,10 +42,60 @@ describe('StarWarsService', () => {
   });
 
   it('init() should load characters into store', () => {
-    pending('not tested yet');
+    MockNetworkService.get.and.returnValue(
+      of({
+        count: 2,
+        next: null,
+        previous: null,
+        results: [
+          characterStub,
+          {...characterStub, name: 'C-3PO'}
+        ]
+      })
+    );
+
+    service.init();
+    // of is a sync observable
+    service.peopleList$.subscribe(
+      (results) => {
+        expect(results).toEqual([
+          characterStub,
+          {...characterStub, name: 'C-3PO'}
+        ]);
+      }
+    );
   });
 
   it('next() should add new characters into store', () => {
-    pending('not tested yet');
+    MockNetworkService.get.and.returnValues(
+      of({
+        count: 2,
+        next: 'SOMEURL', // implementation checks for this URL
+        previous: null,
+        results: [
+          characterStub
+        ]
+      }),
+      of({
+        count: 2,
+        next: null,
+        previous: null,
+        results: [
+          {...characterStub, name: 'R2-D2'}
+        ]
+      })
+    );
+
+    service.init();
+    service.next();
+    // of is a sync observable
+    service.peopleList$.subscribe(
+      (results) => {
+        expect(results).toEqual([
+          characterStub,
+          {...characterStub, name: 'R2-D2'}
+        ]);
+      }
+    );
   });
 });
