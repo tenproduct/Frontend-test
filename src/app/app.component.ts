@@ -1,10 +1,30 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Person } from './models';
+import { ApiService } from './services';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent {
-  title = 'Star Wars App!';
+export class AppComponent implements OnInit {
+  people: Person[];
+
+  constructor(private apiService: ApiService, private cd: ChangeDetectorRef) { }
+
+  ngOnInit(): void {
+    this.loadPeople();
+  }
+
+  trackByName(_index: number, person: Person): string {
+    return person.name;
+  }
+
+  loadPeople(): void {
+    this.apiService.getPeople().subscribe(response => {
+      this.people = response.results;
+      this.cd.markForCheck();
+    });
+  }
 }

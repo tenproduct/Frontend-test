@@ -1,1 +1,9 @@
-<mat-toolbar>{{title}}</mat-toolbar>
+<mat-toolbar>Star Wars App!</mat-toolbar>
+
+<main>
+    <div class="cards">
+        <mat-card *ngFor="let person of people; trackBy: trackByName">
+            <mat-card-title>{{ person.name }}</mat-card-title>
+        </mat-card>
+    </div>
+</main>
