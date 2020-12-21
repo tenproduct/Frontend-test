@@ -1,1 +1,29 @@
-<mat-toolbar>{{title}}</mat-toolbar>
+<mat-toolbar>Star Wars App!</mat-toolbar>
+
+<main>
+    <form (ngSubmit)="onSearch(searchField.value)">
+        <mat-form-field>
+            <mat-label>Search character</mat-label>
+            <input #searchField matInput>
+        </mat-form-field>
+        <button mat-raised-button [color]="'primary'">Search Character</button>
+    </form>
+    <div class="result-info">Showing {{ people.length }} results of {{ maxPeopleCount }}</div>
+    <mat-form-field>
+        <mat-label>Sort by</mat-label>
+        <mat-select (selectionChange)="onSortChange($event.value)">
+            <mat-option [value]="'asc'">A-Z</mat-option>
+            <mat-option [value]="'desc'">Z-A</mat-option>
+            <mat-option [value]="'male'">Male</mat-option>
+            <mat-option [value]="'female'">Female</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div class="cards">
+        <mat-card *ngFor="let person of people; trackBy: trackByName; let odd = odd">
+            <img mat-card-image [src]="odd ? 'assets/mock-image-1.png' : 'assets/mock-image.png'">
+            <mat-card-title>{{ person.name }}</mat-card-title>
+        </mat-card>
+    </div>
+    <button *ngIf="people.length < maxPeopleCount" mat-raised-button class="load-button" [color]="'primary'"
+        [disabled]="loading" (click)="onLoadMore()">Load More</button>
+</main>

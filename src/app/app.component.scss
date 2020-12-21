@@ -1,0 +1,32 @@
+main {
+    padding: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.result-info {
+    margin: 10px 0;
+}
+
+.cards {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+
+mat-card {
+    background: lightgray;
+}
+
+mat-card-title {
+    text-align: center;
+}
+
+.load-button {
+    width: 100%;
+    margin-top: 10px;
+}
