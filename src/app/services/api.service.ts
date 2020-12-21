@@ -14,8 +14,8 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  getPeople(page?: number): Observable<PeopleResponse> {
-    const params: Params = pickBy({ page }, identity);
+  getPeople(page?: number, search?: string): Observable<PeopleResponse> {
+    const params: Params = pickBy({ page, search }, identity);
 
     return this.http.get<PeopleResponse>(`${API_URL}/people/`, { params })
   }

@@ -26,6 +26,7 @@ export class AppComponent implements OnInit {
   
   private currentSort: Sort;
   private currentPage: number;
+  private currentSearch: string;
 
   constructor(private apiService: ApiService, private cd: ChangeDetectorRef) { }
 
@@ -46,11 +47,18 @@ export class AppComponent implements OnInit {
     this.loadPeople();
   }
 
+  onSearch(text: string) {
+    this.people = [];
+    this.currentPage = undefined;
+    this.currentSearch = text;
+    this.loadPeople();
+  }
+
   private loadPeople(): void {
     const nextPage = this.currentPage ? this.currentPage + 1 : undefined;
 
     this.loading = true;
-    this.apiService.getPeople(nextPage).pipe(finalize(() => {
+    this.apiService.getPeople(nextPage, this.currentSearch).pipe(finalize(() => {
       this.loading = false;
       this.cd.markForCheck();
     })).subscribe(response => {
