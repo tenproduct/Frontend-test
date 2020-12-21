@@ -12,7 +12,8 @@
         </mat-select>
     </mat-form-field>
     <div class="cards">
-        <mat-card *ngFor="let person of people; trackBy: trackByName">
+        <mat-card *ngFor="let person of people; trackBy: trackByName; let odd = odd">
+            <img mat-card-image [src]="odd ? 'assets/mock-image-1.png' : 'assets/mock-image.png'">
             <mat-card-title>{{ person.name }}</mat-card-title>
         </mat-card>
     </div>
