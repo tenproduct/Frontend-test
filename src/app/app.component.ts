@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { Person } from './models';
 import { ApiService } from './services';
 import { sortBy } from './utils';
+import { finalize } from 'rxjs/operators';
 
 type Sort = "asc" | "desc" | "male" | "female";
 
@@ -21,6 +22,10 @@ const sortCompareFns: { [key in Sort]: (a: Person, b: Person) => number } = {
 export class AppComponent implements OnInit {
   people: Person[] = [];
   maxPeopleCount: number;
+  loading: boolean;
+  
+  private currentSort: Sort;
+  private currentPage: number;
 
   constructor(private apiService: ApiService, private cd: ChangeDetectorRef) { }
 
@@ -33,14 +38,28 @@ export class AppComponent implements OnInit {
   }
   
   onSortChange(sort: Sort) {
+    this.currentSort = sort;
     this.people = sortBy(this.people, sortCompareFns[sort]);
   }
 
-  loadPeople(): void {
-    this.apiService.getPeople().subscribe(response => {
-      this.people = response.results;
+  onLoadMore() {
+    this.loadPeople();
+  }
+
+  private loadPeople(): void {
+    const nextPage = this.currentPage ? this.currentPage + 1 : undefined;
+
+    this.loading = true;
+    this.apiService.getPeople(nextPage).pipe(finalize(() => {
+      this.loading = false;
+      this.cd.markForCheck();
+    })).subscribe(response => {
+      const allPeople = [...this.people, ...response.results];
+
+      this.people = this.currentSort ? sortBy(allPeople, sortCompareFns[this.currentSort]) : allPeople;
       this.maxPeopleCount = response.count;
       this.cd.markForCheck();
+      this.currentPage = nextPage || 1;
     });
   }
 }

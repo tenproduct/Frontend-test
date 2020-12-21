@@ -17,4 +17,5 @@
             <mat-card-title>{{ person.name }}</mat-card-title>
         </mat-card>
     </div>
+    <button *ngIf="people.length < maxPeopleCount" mat-raised-button [color]="'primary'" [disabled]="loading" (click)="onLoadMore()">Load More</button>
 </main>

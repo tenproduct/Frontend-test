@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Params } from '@angular/router';
 import { Observable } from 'rxjs';
 import { PeopleResponse } from '../models';
+import { pickBy, identity } from "lodash-es";
 
 const API_URL = 'https://swapi.dev/api';
 
@@ -12,7 +14,9 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  getPeople(): Observable<PeopleResponse> {
-    return this.http.get<PeopleResponse>(`${API_URL}/people/`)
+  getPeople(page?: number): Observable<PeopleResponse> {
+    const params: Params = pickBy({ page }, identity);
+
+    return this.http.get<PeopleResponse>(`${API_URL}/people/`, { params })
   }
 }

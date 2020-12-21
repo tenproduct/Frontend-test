@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
-import { MatCardModule, MatSelectModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatSelectModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,8 @@ import { MatCardModule, MatSelectModule } from '@angular/material';
     BrowserAnimationsModule,
     HttpClientModule,
     MatCardModule,
-    MatSelectModule
+    MatSelectModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
