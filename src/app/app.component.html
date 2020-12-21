@@ -2,6 +2,15 @@
 
 <main>
     <div class="result-info">Showing {{ people.length }} results of {{ maxPeopleCount }}</div>
+    <mat-form-field>
+        <mat-label>Sort by</mat-label>
+        <mat-select (selectionChange)="onSortChange($event.value)">
+            <mat-option [value]="'asc'">A-Z</mat-option>
+            <mat-option [value]="'desc'">Z-A</mat-option>
+            <mat-option [value]="'male'">Male</mat-option>
+            <mat-option [value]="'female'">Female</mat-option>
+        </mat-select>
+    </mat-form-field>
     <div class="cards">
         <mat-card *ngFor="let person of people; trackBy: trackByName">
             <mat-card-title>{{ person.name }}</mat-card-title>
