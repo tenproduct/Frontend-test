@@ -1,6 +1,7 @@
 <mat-toolbar>Star Wars App!</mat-toolbar>
 
 <main>
+    <div class="result-info">Showing {{ people.length }} results of {{ maxPeopleCount }}</div>
     <div class="cards">
         <mat-card *ngFor="let person of people; trackBy: trackByName">
             <mat-card-title>{{ person.name }}</mat-card-title>

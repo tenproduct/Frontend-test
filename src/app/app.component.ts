@@ -10,6 +10,7 @@ import { ApiService } from './services';
 })
 export class AppComponent implements OnInit {
   people: Person[];
+  maxPeopleCount: number;
 
   constructor(private apiService: ApiService, private cd: ChangeDetectorRef) { }
 
@@ -24,6 +25,7 @@ export class AppComponent implements OnInit {
   loadPeople(): void {
     this.apiService.getPeople().subscribe(response => {
       this.people = response.results;
+      this.maxPeopleCount = response.count;
       this.cd.markForCheck();
     });
   }
