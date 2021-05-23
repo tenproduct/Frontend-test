@@ -1,0 +1,13 @@
+<form>
+    <mat-form-field appearance="fill">
+      <mat-label>Sort by</mat-label>
+      <select matNativeControl [(ngModel)]="selectedOption" name="option">
+        <option value="" selected></option>
+        <option *ngFor="let option of sortOptions" [value]="option.value">
+          {{option.viewValue}}
+        </option>
+      </select>
+    </mat-form-field>
+    <p> Selected option: {{selectedOption}} </p>
+  </form>
+  

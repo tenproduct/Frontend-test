@@ -1,0 +1,13 @@
+.sw-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .sw-form-field {
+    width: 50%;
+    margin: auto;
+  }
+}
+
+
