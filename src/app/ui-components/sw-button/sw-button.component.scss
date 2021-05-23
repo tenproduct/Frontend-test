@@ -1,0 +1,11 @@
+.sw-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .load-more {
+        height: 40px;
+        width: 100%;
+    }
+}
