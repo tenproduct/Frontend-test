@@ -34,7 +34,7 @@ export class SwDashboardComponent implements OnInit {
   }
 
   searchCharacter() {
-    if (this.name !== undefined) return;
+    if (this.name === undefined) return;
     this.characters$ = this.swapiService.getByName(this.name);
   }
 
