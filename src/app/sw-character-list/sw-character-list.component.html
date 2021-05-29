@@ -1,19 +1,6 @@
 <div class="sw-character-row">
-    <div class="character">
-        <img src="../../assets/mock-image-1.png" alt="">
-        <span>Luke Skywalker</span>
+    <div class="character" *ngFor="let character of characterList | sortData : [sortOption] : [sortOrder] ; index as i">
+        <img src="{{getImage(i)}}" alt="">
+        <span>{{character.name}}</span>
     </div>
-    <div class="character">
-        <img src="../../assets/mock-image.png" alt="">
-        <span>Luke Skywalker</span>
-    </div>
-    <div class="character">
-        <img src="../../assets/mock-image-1.png" alt="">
-        <span>Luke Skywalker</span>
-    </div>
-    <div class="character">
-        <img src="../../assets/mock-image.png" alt="">
-        <span>Luke Skywalker</span>
-    </div>
-    
 </div>

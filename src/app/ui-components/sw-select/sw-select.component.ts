@@ -1,9 +1,7 @@
+import { Output } from '@angular/core';
+import { Input } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-
-interface SortOptions {
-  value: string;
-  viewValue: string;
-}
 
 @Component({
   selector: 'sw-select',
@@ -12,17 +10,19 @@ interface SortOptions {
 })
 export class SwSelectComponent implements OnInit {
 
+  @Input() sortOptions: Array<any>;
+  @Input() selectedValue: any;
+  @Output() selectedValueChange = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit() {
   }
-  selectedValue: string;
-  selectedOption: string;
 
-  sortOptions: SortOptions[] = [
-    {value: 'A-Z', viewValue: 'A-Z'},
-    {value: 'Z-A', viewValue: 'Z-A'},
-    {value: 'Male', viewValue: 'Male'},
-    {value: 'Female', viewValue: 'Female'}
-  ];
+  valueChanged(value) {
+    this.selectedValueChange.emit(this.sortOptions.filter(x => x.viewValue == value)[0]);
+  }
+
 }
+
+
+

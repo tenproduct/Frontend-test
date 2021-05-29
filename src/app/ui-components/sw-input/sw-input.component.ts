@@ -7,9 +7,16 @@ import {Component, ViewEncapsulation, Input, Output, EventEmitter, OnInit} from 
 })
 export class SwInputComponent implements OnInit {
 
+  @Input() inputValue;
+  @Output() inputValueChange = new EventEmitter<any>();
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  inputValueChanged(value) {
+    this.inputValueChange.emit(this.inputValue);
   }
 
 }

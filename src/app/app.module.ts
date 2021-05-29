@@ -8,12 +8,14 @@ import { SwDashboardComponent } from './sw-dashboard/sw-dashboard.component';
 import { UiComponentsModule } from './ui-components/ui-components.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SwCharacterListComponent } from './sw-character-list/sw-character-list.component';
+import { SortDataPipe } from './Pipes/sort-data.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     SwDashboardComponent,
-    SwCharacterListComponent
+    SwCharacterListComponent,
+    SortDataPipe
   ],
   imports: [
     BrowserModule,
