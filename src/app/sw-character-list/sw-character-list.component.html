@@ -1,0 +1,6 @@
+<div class="sw-character-row">
+    <div class="character" *ngFor="let character of characterList | sortData : [sortOption] : [sortOrder] ; index as i">
+        <img src="{{getImage(i)}}" alt="">
+        <span>{{character.name}}</span>
+    </div>
+</div>

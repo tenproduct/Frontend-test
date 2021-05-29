@@ -1,0 +1,21 @@
+
+<div class="sw-character-sort">
+    <div class="search-box-block">
+        <sw-input [(inputValue)]="name"></sw-input>
+        <sw-button [buttonLabel]="'Search Character'" (click)="searchCharacter()"></sw-button>
+</div>
+
+<div class="sw-sort-container">
+    <p>Showing {{showRange}} results out of {{(characters$ | async)?.length}}</p>
+    <sw-select [sortOptions]="sortOptions" (selectedValueChange)="sortCharacters($event)"></sw-select>
+</div>
+
+<div class="sw-character-container">
+    <sw-character-list [characterList]="characters$ | async" [sortOption]="sortOption" [sortOrder]="sortOrder"></sw-character-list>
+</div>
+
+<div class="load-more-items">
+    <sw-button [buttonLabel]="'Load More'" [loadMore]="true" (click)="loadMore()"></sw-button>
+</div>
+
+</div>
