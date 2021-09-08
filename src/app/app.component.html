@@ -1,1 +1,4 @@
 <mat-toolbar>{{ title }}</mat-toolbar>
+<div class="people" *ngFor="let person of people$ | async">
+    {{ person.name }}
+</div>
