@@ -7,3 +7,5 @@
 <div class="people">
     <app-sw-card *ngFor="let person of people$ | async; let isOdd = odd" [isOdd]="isOdd" [person]="person"></app-sw-card>
 </div>
+
+<button class="load-more" mat-raised-button type="button" (click)="onLoadMore()">Load more</button>

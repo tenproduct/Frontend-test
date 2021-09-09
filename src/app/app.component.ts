@@ -36,4 +36,8 @@ export class AppComponent implements OnInit {
     public onSortChange(sort: Sort) {
         this.store.dispatch(actions.sortChange({ sort }));
     }
+
+    public onLoadMore() {
+        this.store.dispatch(actions.fetchMorePeople());
+    }
 }

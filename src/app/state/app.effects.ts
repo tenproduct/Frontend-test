@@ -13,7 +13,7 @@ import { SwapiService } from '../services/swapi.service';
 export class AppEffects {
     loadPeople$ = createEffect(() =>
         this.actions$.pipe(
-            ofType(actions.fetchPeople, actions.searchTermChange),
+            ofType(actions.fetchPeople, actions.searchTermChange, actions.fetchMorePeople),
             withLatestFrom(this.store.select(selectors.selectNextPage), this.store.select(selectors.selectSearchTerm)),
             mergeMap(([_, nextPage, searchTerm]) => this.swapi.getPeople(nextPage, searchTerm)),
             map((response) => actions.fetchPeopleSuccess({ response })),
