@@ -13,3 +13,5 @@ export const selectCount = createSelector(root, (state: AppState) => state.count
 export const selectNextPage = createSelector(root, (state: AppState) => state.nextPage);
 
 export const selectSearchTerm = createSelector(root, (state: AppState) => state.searchTerm);
+
+export const selectSort = createSelector(root, (state: AppState) => state.sort);

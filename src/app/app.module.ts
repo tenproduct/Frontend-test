@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
@@ -15,9 +16,10 @@ import { reducer, rootStateKey } from './state/app.state';
 import { AppEffects } from './state/app.effects';
 import { environment } from '../environments/environment';
 import { SearchComponent } from './components/search/search.component';
+import { SortComponent } from './components/sort/sort.component';
 
 @NgModule({
-    declarations: [AppComponent, SearchComponent],
+    declarations: [AppComponent, SearchComponent, SortComponent],
     imports: [
         BrowserModule,
         MatToolbarModule,
@@ -29,7 +31,8 @@ import { SearchComponent } from './components/search/search.component';
             logOnly: environment.production
         }),
         MatButtonModule,
-        MatInputModule
+        MatInputModule,
+        MatSelectModule
     ],
     providers: [],
     bootstrap: [AppComponent]

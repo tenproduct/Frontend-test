@@ -16,7 +16,7 @@ export class SearchComponent {
         this.search = new EventEmitter();
     }
 
-    public onSearch(searchTerm: string) {
+    public onSearch(searchTerm: string): void {
         this.search.next(searchTerm);
     }
 }

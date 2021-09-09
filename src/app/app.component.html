@@ -2,6 +2,8 @@
 
 <app-search [searchTerm]="searchTerm$ | async" (search)="onSearch($event)"></app-search>
 
+<app-sort [sort]="sort$ | async" (change)="onSortChange($event)"></app-sort>
+
 <div class="people" *ngFor="let person of people$ | async">
     {{ person.name }}
 </div>
