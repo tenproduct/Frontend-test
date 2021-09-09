@@ -4,6 +4,6 @@
 
 <app-sort [sort]="sort$ | async" (change)="onSortChange($event)"></app-sort>
 
-<div class="people" *ngFor="let person of people$ | async">
-    {{ person.name }}
+<div class="people">
+    <app-sw-card *ngFor="let person of people$ | async; let isOdd = odd" [isOdd]="isOdd" [person]="person"></app-sw-card>
 </div>

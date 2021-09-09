@@ -6,6 +6,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
@@ -17,9 +18,10 @@ import { AppEffects } from './state/app.effects';
 import { environment } from '../environments/environment';
 import { SearchComponent } from './components/search/search.component';
 import { SortComponent } from './components/sort/sort.component';
+import { SwCardComponent } from './components/sw-card/sw-card.component';
 
 @NgModule({
-    declarations: [AppComponent, SearchComponent, SortComponent],
+    declarations: [AppComponent, SearchComponent, SortComponent, SwCardComponent],
     imports: [
         BrowserModule,
         MatToolbarModule,
@@ -32,7 +34,8 @@ import { SortComponent } from './components/sort/sort.component';
         }),
         MatButtonModule,
         MatInputModule,
-        MatSelectModule
+        MatSelectModule,
+        MatCardModule
     ],
     providers: [],
     bootstrap: [AppComponent]

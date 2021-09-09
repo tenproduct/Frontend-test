@@ -1,0 +1,9 @@
+.people {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    app-sw-card {
+        margin: 5px;
+    }
+}
