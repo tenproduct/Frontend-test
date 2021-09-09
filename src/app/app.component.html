@@ -1,1 +1,12 @@
-<mat-toolbar>{{title}}</mat-toolbar>
+<mat-toolbar color="primary">{{ title }}</mat-toolbar>
+
+<app-search [searchTerm]="searchTerm$ | async" (search)="onSearch($event)"></app-search>
+
+<div class="info">Showing {{ (people$ | async).length }} results of {{ count$ | async }}</div>
+<app-sort [sort]="sort$ | async" (change)="onSortChange($event)"></app-sort>
+
+<div class="people">
+    <app-sw-card *ngFor="let person of people$ | async; let isOdd = odd" [isOdd]="isOdd" [person]="person"></app-sw-card>
+</div>
+
+<button class="load-more" mat-raised-button type="button" (click)="onLoadMore()" *ngIf="nextPage$ | async">Load more</button>

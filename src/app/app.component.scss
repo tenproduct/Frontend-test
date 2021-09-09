@@ -1,0 +1,41 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+    mat-toolbar {
+        margin-bottom: 10px;
+        white-space: normal;
+        height: min-content;
+        min-height: 56px;
+    }
+
+    app-search {
+        margin-bottom: 30px;
+    }
+
+    .info {
+        margin-bottom: 20px;
+    }
+
+    app-search {
+        align-self: center;
+    }
+
+    .people {
+        display: flex;
+        flex-wrap: wrap;
+
+        app-sw-card {
+            margin: 5px;
+        }
+
+        margin-bottom: 20px;
+    }
+
+    .load-more {
+        min-width: 150px;
+        width: 80%;
+        align-self: center;
+    }
+}

@@ -1,0 +1,16 @@
+mat-card {
+    max-width: 300px;
+    padding: 26px;
+
+    @media (max-width: 860px) {
+        max-width: 140px;
+    }
+
+    @media (max-width: 400px) {
+        max-width: 100%;
+    }
+
+    mat-card-content {
+        text-align: center;
+    }
+}
