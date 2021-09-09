@@ -13,16 +13,20 @@ import * as actions from './state/app.actions';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-    title = 'Star Wars App!';
+    title = 'Star Wars Character Search';
 
     public people$: Observable<SWPerson[]>;
     public searchTerm$: Observable<string>;
     public sort$: Observable<Sort>;
+    public count$: Observable<number>;
+    public nextPage$: Observable<number>;
 
     constructor(private store: Store) {
         this.people$ = this.store.select(selectors.selectPeople);
         this.searchTerm$ = this.store.select(selectors.selectSearchTerm);
         this.sort$ = this.store.select(selectors.selectSort);
+        this.count$ = this.store.select(selectors.selectCount);
+        this.nextPage$ = this.store.select(selectors.selectNextPage);
     }
 
     ngOnInit() {

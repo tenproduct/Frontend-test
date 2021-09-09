@@ -47,12 +47,6 @@ const appReducer = createReducer(
             sort,
             people: [...state.people].sort(sortPredicates[Sort[sort]])
         };
-    }),
-    on(actions.fetchMorePeople, (state) => {
-        return {
-            ...state,
-            nextPage: state.nextPage + 1
-        };
     })
 );
 

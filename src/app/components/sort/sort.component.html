@@ -1,5 +1,5 @@
 <mat-form-field>
-    <mat-label>Favorite food</mat-label>
+    <mat-label>Sort by</mat-label>
     <mat-select [value]="sort" (valueChange)="valueChange($event)">
         <mat-option *ngFor="let sort of sortValues" [value]="sort">
             {{ Sort[sort] }}
