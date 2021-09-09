@@ -7,12 +7,14 @@ export interface AppState {
     count: number;
     nextPage: number;
     people: SWPerson[];
+    searchTerm: string;
 }
 
 export const initialState: AppState = {
     count: 0,
     nextPage: 1,
-    people: []
+    people: [],
+    searchTerm: ''
 };
 
 export const rootStateKey = 'state';
@@ -26,7 +28,14 @@ const appReducer = createReducer(
             ...state,
             count: response.count,
             nextPage: nextPageUrl ? +nextPageUrl.searchParams.get('page') : null,
-            people: [...state.people, ...response.results]
+            people: response.results
+        };
+    }),
+    on(actions.searchTermChange, (state, { searchTerm }) => {
+        return {
+            ...state,
+            nextPage: 1,
+            searchTerm
         };
     })
 );

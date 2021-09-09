@@ -1,4 +1,7 @@
 <mat-toolbar>{{ title }}</mat-toolbar>
+
+<app-search [searchTerm]="searchTerm$ | async" (search)="onSearch($event)"></app-search>
+
 <div class="people" *ngFor="let person of people$ | async">
     {{ person.name }}
 </div>

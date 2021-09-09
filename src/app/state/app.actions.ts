@@ -9,3 +9,5 @@ export const fetchPeople = createAction(`${PREFIX} Fetch People`);
 export const fetchPeopleSuccess = createAction(`${PREFIX} Fetch People Success`, props<{ response: SwapiResponse }>());
 
 export const fetchPeopleFailed = createAction(`${PREFIX} Fetch People Failed`);
+
+export const searchTermChange = createAction(`${PREFIX} SearchTerm Changed`, props<{ searchTerm: string }>());
