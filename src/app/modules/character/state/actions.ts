@@ -19,9 +19,7 @@ export class LoadCharacters implements Action {
 export class CharactersLoadedSuccess implements Action {
     readonly type = CharactersActions.CharactersLoadedSuccess;
 
-    constructor(public payload: ResponseCharacterModel) {
-        debugger;
-    }
+    constructor(public payload: ResponseCharacterModel) {}
 }
 
 export class CharactersLoadedError implements Action {

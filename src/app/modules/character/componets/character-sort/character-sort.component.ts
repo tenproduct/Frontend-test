@@ -20,7 +20,9 @@ export class CharacterSortComponent implements OnInit {
 
   @Output() characterSortOptionChanged = new EventEmitter();
 
-  constructor() { }
+  constructor() { 
+    this.selectedOption = this.sortOptions[0];
+  }
 
   ngOnInit() {}
 
