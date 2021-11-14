@@ -1,0 +1,6 @@
+<mat-form-field>
+    <div>Sort by</div>
+    <mat-select [(ngModel)]="selectedOption" (selectionChange)="sortOptionChanged($event.value)">
+      <mat-option [value]="option" *ngFor="let option of sortOptions">{{ option.title }}</mat-option>
+    </mat-select>
+</mat-form-field>
