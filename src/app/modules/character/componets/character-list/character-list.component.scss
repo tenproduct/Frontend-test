@@ -1,0 +1,35 @@
+@import '../../../../../assets/styles/mixins/mixins.scss';
+
+.character-list-wrapper {
+    min-height: 100%;
+    padding: 50px 100px;
+}
+
+.character-list {
+    margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.character-item {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @media (max-width: $screen-md) {
+        width: 50%;
+    }
+
+    @media (max-width: $screen-sm) {
+        width: 100%;
+    }
+}
+
+.character-list-load-more-wrapper {
+    text-align: center;
+}
+
+.responsive-img {
+    width: 90%;
+    height: auto;
+}

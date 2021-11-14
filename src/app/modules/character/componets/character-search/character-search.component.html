@@ -1,0 +1,16 @@
+<div class="character-list-search-wrapper">
+    <mat-form-field>
+        <input 
+            matInput type="search"
+            [(ngModel)]="search"
+            placeholder="Search Character"
+            class="search-input">
+    </mat-form-field>
+    <div>
+        <button 
+            mat-raised-button
+            color="primary"
+            (click)="searchCharacter()">Search Character
+        </button>
+    </div>
+</div>
