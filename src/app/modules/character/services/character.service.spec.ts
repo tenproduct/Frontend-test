@@ -6,6 +6,8 @@ import { CharacterService } from './character.service';
 
 describe('CharacterService', () => {
   beforeEach(() => TestBed.configureTestingModule({
+    imports: [HttpClientModule],
+    providers: [CharacterService]
   }));
 
   it('should be created', () => {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AppState } from 'src/app/modules/core/models/app.model';
+import { AppState } from 'src/app/core/models/app.model';
 import { Character, CharacterSortOption } from '../../models/character.model';
 import { LoadCharacters, LoadMoreCharacters, SearchCharacters } from '../../state/actions';
 import { selectCharacterList, selectCurrentCharacterCounter, selectTotalCharacterCounter } from '../../state/selectors';

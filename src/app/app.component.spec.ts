@@ -1,6 +1,8 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { SharedModule } from './modules/shared/shared.module';
+import { AppRoutingModule } from './app-routing.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -9,7 +11,8 @@ describe('AppComponent', () => {
         AppComponent
       ],
       imports: [
-        MatToolbarModule,
+        AppRoutingModule,
+        SharedModule,
       ],
     }).compileComponents();
   }));

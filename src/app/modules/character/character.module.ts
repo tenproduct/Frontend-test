@@ -4,7 +4,7 @@ import { CharacterListComponent } from './componets/character-list/character-lis
 import { CharacterRoutingModule } from './character-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { StoreModule } from '@ngrx/store';
-import { Features } from '../core/models/feature.enum';
+import { Features } from '../../core/models/feature.enum';
 import { characterReducer } from './state/reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { CharacterEffects } from './state/effects';

@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { map, mergeMap, catchError, withLatestFrom } from 'rxjs/operators';
-import { AppState } from '../../core/models/app.model';
+import { AppState } from '../../../core/models/app.model';
 import { CharactersActions } from '../models/character.enum';
 import { CharacterService } from '../services/character.service';
 import { CharactersLoadedError, CharactersLoadedSuccess } from './actions';
