@@ -2,19 +2,21 @@
 
     <app-character-search (searchCharacterEvent)="searchCharacter($event)"></app-character-search>
 
-    <div>Showing 5 results of 10</div>
+    <div>Showing {{ currentCharacterCount$ | async }} results of {{ totalCharacterCount$ | async }}</div>
 
     <app-character-sort (characterSortOptionChanged)=characterSortOptionChanged($event)></app-character-sort>
 
     <div class="character-list">
-        <div *ngFor="let character of [1,2,3,4,5]; let i = index;" class="character-item">
-            <img src="assets/mock-image{{ i%2 ? '': '-1'}}.png" class="responsive-img " alt="{{ character }}">
-            <div>{{ character }}</div>
+        <div *ngFor="let character of (characterList$ | async | sort:selectedCharacterOption); let i = index;" class="character-item">
+            <img src="assets/mock-image{{ i%2 ? '': '-1'}}.png" class="responsive-img " alt="{{ character.name }}">
+            <div>{{ character.name }}</div>
+            <div>{{ character.gender }}</div>
         </div>
     </div>
 
     <div 
-        class="character-list-load-more-wrapper">
+        class="character-list-load-more-wrapper"
+        *ngIf="(totalCharacterCount$ | async) - (currentCharacterCount$ | async)">
         <button mat-raised-button color="primary" (click)="loadMoreCharacters()">Load more</button>
     </div>
 
