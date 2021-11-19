@@ -1,0 +1,13 @@
+.card {
+  width: 180px;
+  border-radius: 4px;
+  border: 1px solid gray;
+  padding: 10px;
+
+  &__image {
+    width: inherit;
+  }
+  &__name {
+    text-align: center;
+  }
+}
