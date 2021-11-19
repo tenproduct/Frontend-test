@@ -1,0 +1,52 @@
+<div class="dashboard">
+  <div class="search-box">
+    <mat-form-field appearance="fill">
+      <input #search matInput placeholder="Search character" />
+    </mat-form-field>
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="searchCharacters(search.value)"
+    >
+      Search Character
+    </button>
+  </div>
+
+  <div class="showing-text">
+    Showing {{ loadedCharacters$ | async }} results of
+    {{ totalCharacters$ | async }}
+  </div>
+  <mat-form-field class="select-input" appearance="fill">
+    <mat-select
+      placeholder="Sort by"
+      (selectionChange)="sortCharacters($event.value)"
+    >
+      <mat-option *ngFor="let option of SortByOptions" [value]="option">{{
+        option
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="characters-list">
+    <mat-spinner
+      class="spinner"
+      *ngIf="!loadingSuccess"
+      [diameter]="60"
+    ></mat-spinner>
+    <app-card
+      *ngFor="let character of characters$ | async; index as index"
+      [isOdd]="isOdd(index)"
+      [name]="character.name"
+    ></app-card>
+  </div>
+
+  <button
+    class="load-button"
+    mat-flat-button
+    color="primary"
+    (click)="loadMoreCharacters(search.value)"
+    [disabled]="!loadingSuccess || !nextPage"
+  >
+    Load More
+  </button>
+</div>
