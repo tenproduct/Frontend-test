@@ -1,0 +1,13 @@
+<div class="search">
+    <form class="search-form" (submit)="apiSearch()" (keydown.enter)="$event.preventDefault(); apiSearch()">
+        <mat-form-field appearance="fill">
+          <mat-label>Search Character</mat-label>
+          <input type="text" matInput [formControl]="search">
+          <mat-error *ngIf="search.invalid">{{getErrorMessage()}}</mat-error>
+          <button *ngIf="search.value.length" matSuffix mat-icon-button aria-label="Clear" (click)="clearResults()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        <button mat-raised-button color="primary"  type="submit">Search</button>
+      </form>
+</div>
