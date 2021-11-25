@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { ResultData } from '../interfaces/result-data.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -9,28 +11,17 @@ import { environment } from 'src/environments/environment';
 export class ApiService {
     private apiUrl = environment.apiHost;
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) { }
 
-    public getPeople(): Promise<any> {
-        return this.http.get(`${this.apiUrl}/api/people/`)
-            .toPromise()
-            .catch(this.handleError);
+    public getPeople(): Observable<ResultData> {
+        return this.http.get<ResultData>(`${this.apiUrl}/api/people/`);
     }
 
-    public searchCharacter(name: string): Promise<any> {
-        return this.http.get(`${this.apiUrl}/api/people/?search=${name}`)
-            .toPromise()
-            .catch(this.handleError);
+    public searchCharacter(name: string): Observable<ResultData> {
+        return this.http.get<ResultData>(`${this.apiUrl}/api/people/?search=${name}`);
     }
 
-    public loadMore(url): Promise<any> {
-        return this.http.get(url)
-            .toPromise()
-            .catch(this.handleError);
-    }
-
-    private handleError(error: any): Promise<any> {
-        console.error('An error occurred', error);
-        return Promise.reject(error.message || error);
+    public loadMore(url): Observable<ResultData> {
+        return this.http.get<ResultData>(url);
     }
 }

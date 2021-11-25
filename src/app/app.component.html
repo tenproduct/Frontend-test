@@ -5,8 +5,7 @@
 
 <div *ngIf="!loading" class="container">
     <mat-toolbar>{{title}}</mat-toolbar>
-
-    <app-search (onFindResult)="setResults($event)" (onClearResult)="getPeople()"></app-search>
+    <app-search (onFindResult)="setSearchResults($event)" (onClearResult)="getPeople()"></app-search>
 
     <div class="wrapper">
         <div class="info">Showing {{ people.length }} results of {{count}}</div>
@@ -17,7 +16,7 @@
         </div>   
     </div>
 
-    <div class="load-more" *ngIf="people.length >= 10 && people.length !== count">
+    <div class="load-more" *ngIf="isShowLoadmore()">
         <button mat-raised-button color="primary" (click)="loadMore()">Load More</button>
     </div>
 </div>

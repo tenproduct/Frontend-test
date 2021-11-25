@@ -24,21 +24,20 @@ export class AppComponent implements OnInit {
     this.loading = true;
 
     this.apiService.getPeople()
-    .then(({results, count, next }) => {
-      this.people = results;
-      this.count = count;
-      this.next = next;
-    }).finally(() => {
-      this.loading = false;
-    });
+      .subscribe(({ results, count, next }) => {
+        this.people = results;
+        this.count = count;
+        this.next = next;
+        this.loading = false;
+      });
   }
 
-  setResults({results}) {
+  setSearchResults(results) {
     this.people = results;
   }
 
   sortBy(type) {
-    this.people.sort((a: any, b: any) => {
+    this.people.sort((a: Person, b: Person) => {
       const sorting = {
         'asc': a.name > b.name,
         'desc': a.name < b.name,
@@ -50,8 +49,12 @@ export class AppComponent implements OnInit {
     })
   }
 
+  isShowLoadmore() {
+    return this.people.length >= 10 && this.people.length !== this.count;
+  }
+
   loadMore() {
-    this.apiService.loadMore(this.next).then(({next, results}) => {
+    this.apiService.loadMore(this.next).subscribe(({ next, results }) => {
       this.next = next;
       this.people = this.people.concat(results)
     })

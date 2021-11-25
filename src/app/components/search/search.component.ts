@@ -19,8 +19,8 @@ export class SearchComponent {
   apiSearch() {
     if (this.search.errors) return;
 
-    this.apiService.searchCharacter(this.search.value).then(result => {
-      this.onFindResult.emit(result);
+    this.apiService.searchCharacter(this.search.value).subscribe(({ results }) => {
+      this.onFindResult.emit(results);
     })
   }
 
