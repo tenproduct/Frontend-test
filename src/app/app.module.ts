@@ -3,16 +3,44 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatToolbarModule} from '@angular/material/toolbar';
+
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+
+import { 
+  MatToolbarModule, 
+  MatCardModule, 
+  MatButtonModule, 
+  MatInputModule, 
+  MatIconModule, 
+  MatSelectModule, 
+  MatProgressSpinnerModule
+} from '@angular/material';
+
+import { PersonComponent } from './components/person/person.component';
+import { SearchComponent } from './components/search/search.component';
+import { SortComponent } from './components/sort/sort.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PersonComponent,
+    SearchComponent,
+    SortComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     MatToolbarModule,
-    BrowserAnimationsModule
+    MatInputModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

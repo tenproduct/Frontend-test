@@ -1,1 +1,22 @@
-<mat-toolbar>{{title}}</mat-toolbar>
+
+<div *ngIf="loading" class="spinner">
+    <mat-spinner ></mat-spinner>
+</div>
+
+<div *ngIf="!loading" class="container">
+    <mat-toolbar>{{title}}</mat-toolbar>
+    <app-search (onFindResult)="setSearchResults($event)" (onClearResult)="getPeople()"></app-search>
+
+    <div class="wrapper">
+        <div class="info">Showing {{ people.length }} results of {{count}}</div>
+        <app-sort (onSort)="sortBy($event)"></app-sort>
+
+        <div class="people">
+            <app-person *ngFor="let person of people; let i = index" [person]="person" [index]="i"></app-person>
+        </div>   
+    </div>
+
+    <div class="load-more" *ngIf="isShowLoadmore()">
+        <button mat-raised-button color="primary" (click)="loadMore()">Load More</button>
+    </div>
+</div>
