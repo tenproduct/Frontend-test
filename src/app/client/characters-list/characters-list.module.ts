@@ -2,11 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {CharactersListComponent} from './characters-list.component';
 import {CharacterCardModule} from '../character-card/character-card.module';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatButtonModule} from '@angular/material/button';
-import {CharactersSearchModule} from '../characters-search/characters-search.module';
-
-
 
 @NgModule({
   declarations: [CharactersListComponent],
@@ -16,9 +11,6 @@ import {CharactersSearchModule} from '../characters-search/characters-search.mod
   imports: [
     CommonModule,
     CharacterCardModule,
-    MatProgressSpinnerModule,
-    MatButtonModule,
-    CharactersSearchModule
   ]
 })
 export class CharactersListModule { }

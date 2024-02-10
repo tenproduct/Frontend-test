@@ -1,6 +1,7 @@
 import {createReducer, on} from '@ngrx/store';
-import {getCharactersSuccess, searchCharacters, setCharactersLoadingStatus} from './app.actions';
+import {getCharactersSuccess, searchCharacters, setCharactersLoadingStatus, sortChange} from './app.actions';
 import {initialState} from './app.state';
+import {sortMethods} from "../core/sort-methods";
 
 export const appReducer = createReducer(
   initialState,
@@ -11,7 +12,7 @@ export const appReducer = createReducer(
       ...state,
       nextPage,
       totalCount: response.count,
-      characters
+      characters: characters.sort(sortMethods[state.sortedBy])
     };
   }),
   on(setCharactersLoadingStatus, (state, {isLoaded}) => (
@@ -25,6 +26,13 @@ export const appReducer = createReducer(
       ...state,
       nextPage: 1,
       search
+    };
+  }),
+  on(sortChange, (state, { sortMethod }) => {
+    return {
+      ...state,
+      sortedBy: sortMethod,
+      characters: [...state.characters].sort(sortMethods[sortMethod])
     };
   })
 );

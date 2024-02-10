@@ -1,3 +1,19 @@
 <div class="listing">
-  <sw-characters-list></sw-characters-list>
+  <sw-characters-search [searchTerm]="searchTerm$ | async" (search)="onSearch($event)"></sw-characters-search>
+
+  <sw-characters-sort (changeSort)="onSort($event)"></sw-characters-sort>
+
+  <sw-characters-list [characters]="characters$ | async"></sw-characters-list>
+
+  <button *ngIf="(characterListIsLoaded$ | async) && (nextPage$ | async)" class="pagination-btn" mat-raised-button color="primary" type="button"
+          (click)="onLoadMore()">Load more
+  </button>
+
+  <ng-container *ngIf="!(characterListIsLoaded$ | async)">
+    <div
+      [class.listingIsEmpty]="(characters$ | async).length === 0"
+      class="spinner-container">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-container>
 </div>

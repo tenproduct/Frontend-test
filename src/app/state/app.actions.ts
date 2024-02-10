@@ -1,6 +1,7 @@
 import {createAction, props} from '@ngrx/store';
 import {SWCharacterResponse} from '../core/models/character-response.model';
 import {ActionsEnum} from '../core/enums/actions.enum';
+import {SortTypeEnum} from "../core/enums/sort-type-enum";
 
 const PREFIX = ActionsEnum.SW_HEROES;
 
@@ -14,4 +15,6 @@ export const setCharactersLoadingStatus = createAction(`${PREFIX} Set characters
 
 export const loadMoreCharacters = createAction(`${PREFIX} Load more characters`);
 export const searchCharacters = createAction(`${PREFIX} Search Characters`, props<{search: string}>());
+
+export const sortChange = createAction(`${PREFIX} Sort Characters`, props<{sortMethod: keyof typeof SortTypeEnum}>());
 
