@@ -12,6 +12,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {AppEffects} from './state/app.effects';
 import {rootStateKey} from './state/app.state';
 import {appReducer} from './state/app.reducer';
+import {ListingModule} from "./client/listing/listing.module";
 
 @NgModule({
   declarations: [
@@ -22,9 +23,10 @@ import {appReducer} from './state/app.reducer';
     MatToolbarModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    StoreModule.forRoot({ [rootStateKey]: appReducer }),
+    StoreModule.forRoot({[rootStateKey]: appReducer}),
     EffectsModule.forRoot([AppEffects]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+    ListingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
