@@ -9,3 +9,4 @@ export const selectCharactersLoadingStatus = createSelector(root, (state: AppSta
 
 export const selectTotalCount = createSelector(root, (state: AppState) => state.totalCount);
 export const selectNextPage = createSelector(root, (state: AppState) => state.nextPage);
+export const selectSearchTerm = createSelector(root, (state: AppState) => state.search);

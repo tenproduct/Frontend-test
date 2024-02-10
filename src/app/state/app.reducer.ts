@@ -1,5 +1,5 @@
 import {createReducer, on} from '@ngrx/store';
-import {getCharactersSuccess, setCharactersLoadingStatus} from './app.actions';
+import {getCharactersSuccess, searchCharacters, setCharactersLoadingStatus} from './app.actions';
 import {initialState} from './app.state';
 
 export const appReducer = createReducer(
@@ -19,5 +19,12 @@ export const appReducer = createReducer(
       ...state,
       isLoaded
     }
-  ))
+  )),
+  on(searchCharacters, (state, { search }) => {
+    return {
+      ...state,
+      nextPage: 1,
+      search
+    };
+  })
 );

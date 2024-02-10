@@ -4,14 +4,14 @@ import {
   getCharacters,
   getCharactersFailed,
   getCharactersSuccess,
-  loadMoreCharacters,
+  loadMoreCharacters, searchCharacters,
   setCharactersLoadingStatus
 } from './app.actions';
 import {catchError, delay, exhaustMap, map, tap, withLatestFrom} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {SwCharactersService} from '../client/characters-listing/sw-characters.service';
 import {Store} from "@ngrx/store";
-import {selectNextPage} from "./app.selectors";
+import {selectNextPage, selectSearchTerm} from "./app.selectors";
 
 @Injectable()
 export class AppEffects {
@@ -20,12 +20,11 @@ export class AppEffects {
               private readonly charactersService: SwCharactersService) {
   }
   getCharacters$ = createEffect(() => this.actions$.pipe(
-    ofType(getCharacters, loadMoreCharacters),
-    withLatestFrom(this.store$.select(selectNextPage)),
-    delay(500),
-    exhaustMap(([_, nextPage]) => {
-      this.store$.dispatch(setCharactersLoadingStatus({isLoaded: false}));
-      return this.charactersService.getCharacters(nextPage,'');
+    ofType(getCharacters, loadMoreCharacters, searchCharacters),
+    tap(() => this.store$.dispatch(setCharactersLoadingStatus({isLoaded: false}))),
+    withLatestFrom(this.store$.select(selectNextPage), this.store$.select(selectSearchTerm)),
+    exhaustMap(([_, nextPage, search]) => {
+      return this.charactersService.getCharacters(nextPage, search);
     }),
     tap(() => this.store$.dispatch(setCharactersLoadingStatus({isLoaded: true}))),
     map(response => getCharactersSuccess({response})),
