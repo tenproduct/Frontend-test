@@ -9,3 +9,6 @@ export const getCharacters = createAction(`${PREFIX} Get characters Started`);
 export const getCharactersSuccess = createAction(`${PREFIX} Get characters Success`, props<{ response: SWCharacterResponse }>());
 
 export const getCharactersFailed = createAction(`${PREFIX} Get characters Failed`);
+
+export const setCharactersLoadingStatus = createAction(`${PREFIX} Set characters loading`, props<{isLoaded: boolean}>());
+

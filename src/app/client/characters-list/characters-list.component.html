@@ -1,7 +1,14 @@
-<div class="list">
+<div *ngIf="characterListIsLoaded$ | async; else loading" class="list">
   <ng-container *ngFor="let character of characters$ | async ">
     <div class="list__item">
       <sw-character-card [character]="character"></sw-character-card>
     </div>
   </ng-container>
 </div>
+
+<ng-template #loading>
+  <div class="spinner-container">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>
+

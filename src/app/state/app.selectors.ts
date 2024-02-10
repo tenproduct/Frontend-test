@@ -3,8 +3,8 @@ import {createSelector} from '@ngrx/store';
 
 export const root = state => state[rootStateKey];
 
-export const selectCharacters = createSelector(root, (state: AppState) => {
-  return state.characters;
-});
+export const selectCharacters = createSelector(root, (state: AppState) => state.characters);
+
+export const selectCharactersLoadingStatus = createSelector(root, (state: AppState) => state.isLoaded)
 
 export const selectTotalCount = createSelector(root, (state: AppState) => state.totalCount);

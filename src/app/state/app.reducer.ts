@@ -1,14 +1,20 @@
 import {createReducer, on} from '@ngrx/store';
-import {getCharactersSuccess} from './app.actions';
+import {getCharactersSuccess, setCharactersLoadingStatus} from './app.actions';
 import {initialState} from './app.state';
 
 export const appReducer = createReducer(
   initialState,
-  on(getCharactersSuccess, (state, { response }) => {
-    return {
+  on(getCharactersSuccess, (state, {response}) => (
+    {
       ...state,
       totalCount: response.count,
       characters: [...state.characters, ...response.results]
-    };
-  })
+    }
+  )),
+  on(setCharactersLoadingStatus, (state, {isLoaded}) => (
+    {
+      ...state,
+      isLoaded
+    }
+  ))
 );
