@@ -1,6 +1,10 @@
 <div class="listing">
   <sw-characters-search [searchTerm]="searchTerm$ | async" (search)="onSearch($event)"></sw-characters-search>
 
+  <div *ngIf="characterListIsLoaded$ | async" class="total-count">
+    Showing {{(characters$ | async).length}} results from {{totalCount$ | async}}
+  </div>
+
   <sw-characters-sort (changeSort)="onSort($event)"></sw-characters-sort>
 
   <sw-characters-list [characters]="characters$ | async"></sw-characters-list>

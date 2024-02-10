@@ -7,7 +7,7 @@ import {
   selectCharacters,
   selectCharactersLoadingStatus,
   selectNextPage,
-  selectSearchTerm
+  selectSearchTerm, selectTotalCount
 } from '../../state/app.selectors';
 import {SortTypeEnum} from '../../core/enums/sort-type-enum';
 
@@ -21,12 +21,14 @@ export class CharactersListingComponent implements OnInit {
   public nextPage$: Observable<number>;
   public characterListIsLoaded$: Observable<boolean>;
   public searchTerm$: Observable<string>;
+  public totalCount$: Observable<number>;
 
   constructor(private readonly store$: Store) {
     this.characters$ = this.store$.select(selectCharacters);
     this.nextPage$ = this.store$.select(selectNextPage);
     this.characterListIsLoaded$ = this.store$.select(selectCharactersLoadingStatus);
     this.searchTerm$ = this.store$.select(selectSearchTerm);
+    this.totalCount$ = this.store$.select(selectTotalCount);
   }
 
   ngOnInit(): void {
