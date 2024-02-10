@@ -6,17 +6,14 @@ import {SWCharacter} from "../../core/models/character-response.model";
 import {selectCharacters} from "../../state/app.selectors";
 
 @Component({
-  selector: 'sw-listing',
-  templateUrl: './listing.component.html',
-  styleUrls: ['./listing.component.scss']
+  selector: 'sw-characters-listing',
+  templateUrl: './characters-listing.component.html',
+  styleUrls: ['./characters-listing.component.scss']
 })
-export class ListingComponent implements OnInit {
-  public characters$: Observable<SWCharacter[]> = this.store$.select(selectCharacters);
+export class CharactersListingComponent implements OnInit {
 
   constructor(private readonly store$: Store) { }
 
-  ngOnInit(): void {
-    this.store$.dispatch(getCharacters());
-  }
+  ngOnInit(): void {}
 
 }

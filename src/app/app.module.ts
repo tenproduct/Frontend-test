@@ -12,7 +12,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {AppEffects} from './state/app.effects';
 import {rootStateKey} from './state/app.state';
 import {appReducer} from './state/app.reducer';
-import {ListingModule} from "./client/listing/listing.module";
+import {CharactersListingModule} from './client/characters-listing/characters-listing.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import {ListingModule} from "./client/listing/listing.module";
     StoreModule.forRoot({[rootStateKey]: appReducer}),
     EffectsModule.forRoot([AppEffects]),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
-    ListingModule
+    CharactersListingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,7 @@
+<div class="list">
+  <ng-container *ngFor="let character of characters$ | async ">
+    <div class="list__item">
+      <sw-character-card [character]="character"></sw-character-card>
+    </div>
+  </ng-container>
+</div>
