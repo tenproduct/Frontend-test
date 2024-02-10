@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-people-card',
@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./people-card.component.scss']
 })
 export class PeopleCardComponent implements OnInit {
+  @Input() name: string;
+  @Input() isOdd: boolean;
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  public getDefaultImage() {
+    return this.isOdd ?
+      'assets/mock-image-1.png' :
+      'assets/mock-image.png';
   }
 
 }

@@ -16,32 +16,38 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatButtonModule} from "@angular/material/button";
+import {MatListModule} from "@angular/material/list";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
     AppComponent,
     PeopleCardComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    MatToolbarModule,
-    BrowserAnimationsModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers,
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true
-      },
-    }),
-    EffectsModule.forRoot([PeopleEffects]),
-    MatGridListModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatAutocompleteModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        MatToolbarModule,
+        BrowserAnimationsModule,
+        StoreModule.forRoot(reducers, {
+            metaReducers,
+            runtimeChecks: {
+                strictStateImmutability: true,
+                strictActionImmutability: true
+            },
+        }),
+        EffectsModule.forRoot([PeopleEffects]),
+        MatGridListModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatAutocompleteModule,
+        MatButtonModule,
+        MatListModule,
+        MatSelectModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
