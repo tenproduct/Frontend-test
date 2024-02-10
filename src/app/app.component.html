@@ -1,1 +1,22 @@
 <mat-toolbar>{{title}}</mat-toolbar>
+
+<div>
+<!--  <mat-form-field>-->
+<!--    <input type="text" matInput [formControl]="myControl">-->
+<!--    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">-->
+<!--      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">-->
+<!--        {{option}}-->
+<!--      </mat-option>-->
+<!--    </mat-autocomplete>-->
+<!--  </mat-form-field>-->
+</div>
+
+<div>
+  <mat-grid-list cols="2" rowHeight="fit" gutterSize="1px" [style.height]="'200px'">
+    <mat-grid-tile *ngFor="let i of people$ | async">
+      <mat-card [style.width]="'100%'">
+        <app-people-card></app-people-card>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
