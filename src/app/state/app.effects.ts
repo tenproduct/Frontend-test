@@ -1,10 +1,17 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {getCharacters, getCharactersFailed, getCharactersSuccess, setCharactersLoadingStatus} from './app.actions';
-import {catchError, exhaustMap, map, tap} from 'rxjs/operators';
+import {
+  getCharacters,
+  getCharactersFailed,
+  getCharactersSuccess,
+  loadMoreCharacters,
+  setCharactersLoadingStatus
+} from './app.actions';
+import {catchError, delay, exhaustMap, map, tap, withLatestFrom} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {SwCharactersService} from '../client/characters-listing/sw-characters.service';
 import {Store} from "@ngrx/store";
+import {selectNextPage} from "./app.selectors";
 
 @Injectable()
 export class AppEffects {
@@ -13,10 +20,12 @@ export class AppEffects {
               private readonly charactersService: SwCharactersService) {
   }
   getCharacters$ = createEffect(() => this.actions$.pipe(
-    ofType(getCharacters),
-    exhaustMap(() => {
+    ofType(getCharacters, loadMoreCharacters),
+    withLatestFrom(this.store$.select(selectNextPage)),
+    delay(500),
+    exhaustMap(([_, nextPage]) => {
       this.store$.dispatch(setCharactersLoadingStatus({isLoaded: false}));
-      return this.charactersService.getCharacters(1,'');
+      return this.charactersService.getCharacters(nextPage,'');
     }),
     tap(() => this.store$.dispatch(setCharactersLoadingStatus({isLoaded: true}))),
     map(response => getCharactersSuccess({response})),

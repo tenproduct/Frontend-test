@@ -8,3 +8,4 @@ export const selectCharacters = createSelector(root, (state: AppState) => state.
 export const selectCharactersLoadingStatus = createSelector(root, (state: AppState) => state.isLoaded)
 
 export const selectTotalCount = createSelector(root, (state: AppState) => state.totalCount);
+export const selectNextPage = createSelector(root, (state: AppState) => state.nextPage);

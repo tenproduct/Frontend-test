@@ -1,0 +1,16 @@
+:host {
+  .listing {
+    max-width: 1310px;
+    padding-bottom: 200px;
+    margin: auto;
+    @media (max-width: 1200px) {
+      max-width: 976px;
+    }
+    @media (max-width: 992px) {
+      max-width: 768px
+    }
+    @media (max-width: 576px) {
+      max-width: 95%;
+    }
+  }
+}

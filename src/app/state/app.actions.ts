@@ -12,3 +12,5 @@ export const getCharactersFailed = createAction(`${PREFIX} Get characters Failed
 
 export const setCharactersLoadingStatus = createAction(`${PREFIX} Set characters loading`, props<{isLoaded: boolean}>());
 
+export const loadMoreCharacters = createAction(`${PREFIX} Load more characters`);
+
