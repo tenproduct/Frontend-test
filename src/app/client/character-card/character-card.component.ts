@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {SWCharacter} from '../../core/models/character-response.model';
 
 @Component({
@@ -6,11 +6,11 @@ import {SWCharacter} from '../../core/models/character-response.model';
   templateUrl: './character-card.component.html',
   styleUrls: ['./character-card.component.scss']
 })
-export class CharacterCardComponent implements OnInit {
+export class CharacterCardComponent {
   @Input() character: SWCharacter;
-  constructor() { }
+  @Input() isOdd: any;
 
-  ngOnInit(): void {
+  constructor() {
   }
 
 }

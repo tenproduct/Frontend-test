@@ -1,7 +1,9 @@
 <mat-card>
   <div class="card">
     <mat-card-content>
-      <img class="card__image" src="/assets/mock-image.png" alt="star-wars-character">
+      <img class="card__image"
+           [src]="isOdd ? '/assets/mock-image-1.png' : '/assets/mock-image.png'"
+           alt="star-wars-character">
     </mat-card-content>
     <mat-card-footer>
       <mat-card-title>
