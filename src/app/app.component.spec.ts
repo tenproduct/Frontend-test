@@ -1,6 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {HttpClientModule} from "@angular/common/http";
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -10,6 +11,7 @@ describe('AppComponent', () => {
       ],
       imports: [
         MatToolbarModule,
+        HttpClientModule
       ],
     }).compileComponents();
   }));

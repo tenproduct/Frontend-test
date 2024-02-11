@@ -14,7 +14,7 @@ export class CharactersSortComponent {
   @Output() changeSort: EventEmitter<keyof typeof SortTypeEnum>;
   public SortTypeEnum = SortTypeEnum;
 
-  constructor(private readonly store$: Store) {
+  constructor() {
     this.changeSort = new EventEmitter<keyof typeof SortTypeEnum>();
   }
 

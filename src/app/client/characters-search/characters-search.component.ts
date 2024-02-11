@@ -13,7 +13,6 @@ export class CharactersSearchComponent {
   constructor(private readonly fb: FormBuilder) {
     this.form = this.getSearchForm();
   }
-
   public onSearch(): void {
     this.search.emit(this.form.value.search.trim());
   }

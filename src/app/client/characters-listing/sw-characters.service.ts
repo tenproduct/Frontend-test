@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {ApiService} from "../../core/services/api.service";
-import {Observable} from "rxjs";
-import {SWCharacterResponse} from "../../core/models/character-response.model";
-import {CharacterRequest} from "../../core/models/character-request.model";
+import {ApiService} from '../../core/services/api.service';
+import {Observable} from 'rxjs';
+import {SWCharacterResponse} from '../../core/models/character-response.model';
+import {CharacterRequest} from '../../core/models/character-request.model';
 
 @Injectable({
   providedIn: 'root'

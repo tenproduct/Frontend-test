@@ -2,7 +2,7 @@
   <sw-characters-search [searchTerm]="searchTerm$ | async" (search)="onSearch($event)"></sw-characters-search>
 
   <div *ngIf="characterListIsLoaded$ | async" class="total-count">
-    Showing {{(characters$ | async).length}} results from {{totalCount$ | async}}
+    Showing {{(characters$ | async)?.length}} results from {{totalCount$ | async}}
   </div>
 
   <sw-characters-sort (changeSort)="onSort($event)"></sw-characters-sort>
@@ -15,7 +15,7 @@
 
   <ng-container *ngIf="!(characterListIsLoaded$ | async)">
     <div
-      [class.listingIsEmpty]="(characters$ | async).length === 0"
+      [class.listingIsEmpty]="(characters$ | async)?.length === 0"
       class="spinner-container">
       <mat-spinner></mat-spinner>
     </div>

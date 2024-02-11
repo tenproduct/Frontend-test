@@ -1,7 +1,7 @@
 import {createReducer, on} from '@ngrx/store';
 import {getCharactersSuccess, searchCharacters, setCharactersLoadingStatus, sortChange} from './app.actions';
 import {initialState} from './app.state';
-import {sortMethods} from "../core/sort-methods";
+import {sortMethods} from '../core/sort-methods';
 
 export const appReducer = createReducer(
   initialState,
