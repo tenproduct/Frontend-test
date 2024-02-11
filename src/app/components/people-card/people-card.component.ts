@@ -1,4 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { State } from '../../store/reducers';
+import { isLoadingState } from '../../store/selectors/people.selectors';
 
 @Component({
   selector: 'app-people-card',
@@ -9,7 +12,9 @@ export class PeopleCardComponent implements OnInit {
   @Input() name: string;
   @Input() isOdd: boolean;
 
-  constructor() { }
+  public isLoading$ = this.store.select(isLoadingState);
+
+  constructor(public store: Store<State>) {}
 
   ngOnInit() {}
 

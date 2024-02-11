@@ -1,4 +1,4 @@
-import {sortByEnum} from './reducers/people.reducer';
+import { sortByEnum } from '../helpers/sortFns';
 
 export interface IPeopleState {
   people: IPeople[];

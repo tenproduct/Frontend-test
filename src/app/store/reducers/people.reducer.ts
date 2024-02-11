@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import * as PeopleActions from '../actions/people.actions';
-import {IPeople, IPeopleState} from '../state.models';
+import { IPeopleState } from '../state.models';
+import { sortByEnum, sortByFn } from '../../helpers/sortFns';
 
 export const initialState: IPeopleState = {
   people: [],
@@ -34,41 +35,20 @@ export const PeopleReducer = createReducer(
       ...state,
       nextPage: payload.next,
       prevPage: payload.previous,
-      people: sortedResult,
+      people: !!state.sortBy ? sortByFn([...payload.results], state.sortBy) : [...payload.results],
       loading: false
     };
   }),
-  on(PeopleActions.sortPeople, (state, {sortBy}) => {
-
-    return {
+  on(PeopleActions.sortPeople, (state, {sortBy}) => ({
       ...state,
       people: sortByFn([...state.people], sortBy),
       sortBy: sortByEnum[sortBy]
-    };
-  })
+  }))
 );
 
-export enum sortByEnum {
-  'A-Z' = 'A-Z',
-  'Z-A' = 'Z-A',
-  male = 'male',
-  female = 'female'
-}
 
 
-const sortByFn = (people: Array<IPeople>, type: keyof typeof sortByEnum) => {
-  people.sort((a, b) => {
-    const sorting = {
-      [sortByEnum.male]: b.gender === sortByEnum.male,
-      [sortByEnum.female]: b.gender === sortByEnum.female,
-      [sortByEnum['A-Z']]: a.name > b.name,
-      [sortByEnum['Z-A']]: a.name < b.name,
 
-    };
-    return (sorting[type] ? 1 : -1);
-  });
-  return people;
-};
 
 
 
