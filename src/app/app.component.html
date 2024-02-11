@@ -1,22 +1,41 @@
 <mat-toolbar>{{title}}</mat-toolbar>
 
-<div>
-<!--  <mat-form-field>-->
-<!--    <input type="text" matInput [formControl]="myControl">-->
-<!--    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">-->
-<!--      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">-->
-<!--        {{option}}-->
-<!--      </mat-option>-->
-<!--    </mat-autocomplete>-->
-<!--  </mat-form-field>-->
-</div>
+<div class="container">
 
-<div>
-  <mat-grid-list cols="2" rowHeight="fit" gutterSize="1px" [style.height]="'200px'">
-    <mat-grid-tile *ngFor="let i of people$ | async">
-      <mat-card [style.width]="'100%'">
-        <app-people-card></app-people-card>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
+  <div class="search__container">
+    <mat-form-field class="search__field">
+      <input type="text" placeholder="Search Character" aria-label="Number" matInput [formControl]="searchControl" [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <div>
+      <button mat-stroked-button color="primary" [disabled]="!searchControl.value">Search Character</button>
+    </div>
+  </div>
+
+  <div class="filter__container">
+    <h1 class="filter__title">
+      Showing {{(people$ | async).length}} of {{counter$ | async}}
+    </h1>
+    <mat-form-field>
+      <mat-label>Sort by</mat-label>
+      <mat-select (selectionChange)="sortByValue($event)">
+        <mat-option *ngFor="let sortedValue of sortedValue" [value]="sortedValue.value">
+          {{sortedValue.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="result__container">
+    <div class="result__list">
+      <app-people-card *ngFor="let item of people$ | async;let index = index" [name]="item.name" [isOdd]="!!(index % 2)"></app-people-card>
+    </div>
+    <div>
+      <button class="load-more" mat-flat-button color="accent" (click)="loadMorePeople()">Load More</button>
+    </div>
+  </div>
 </div>

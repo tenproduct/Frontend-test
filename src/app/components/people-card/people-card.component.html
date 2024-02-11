@@ -1,1 +1,6 @@
-<p>people-card works!</p>
+<mat-card class="card__container">
+  <img class="card__image" [src]="getDefaultImage()" alt="image">
+  <mat-card-header>
+    <mat-card-title>{{name}}</mat-card-title>
+  </mat-card-header>
+</mat-card>

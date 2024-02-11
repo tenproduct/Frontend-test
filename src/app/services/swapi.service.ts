@@ -17,12 +17,11 @@ export class SwapiService {
     private configService: ConfigService
   ) { }
 
-  public getPeople(): Observable<Array<IPeople>> {
+  public getData(): Observable<IResponse<IPeople>> {
     return this.configService.getConfig()
       .pipe(
         switchMap(({swapiUrl}) => (
             this.http.get<IResponse<IPeople>>(swapiUrl + '/people')
-              .pipe(map((data) => data.results))
           )
         )
       );
