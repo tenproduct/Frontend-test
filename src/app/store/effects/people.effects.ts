@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {actionsNames} from '../actions/people.actions';
 import {SwapiService} from '../../services/swapi.service';
-import {catchError, exhaustMap, map, switchAll, switchMap, tap, withLatestFrom} from 'rxjs/operators';
-import {combineLatest, EMPTY, forkJoin, of} from 'rxjs';
+import {catchError, exhaustMap, map, withLatestFrom} from 'rxjs/operators';
+import { EMPTY } from 'rxjs';
 import * as selectors from '../selectors/people.selectors';
-import {HttpClient} from '@angular/common/http';
-import {Store} from '@ngrx/store';
-import {State} from '../reducers';
-import {IResponse} from '../../models/config.model';
-import {IPeople} from '../state.models';
+import { HttpClient} from '@angular/common/http';
+import { Store } from '@ngrx/store';
+import { State } from '../reducers';
+import { IResponse } from '../../models/config.model';
+import { IPeople } from '../state.models';
 
 @Injectable()
 export class PeopleEffects {
@@ -49,6 +49,24 @@ export class PeopleEffects {
         }),
       )
   ));
+
+  searchDara$ = createEffect(() => (
+    this.actions$
+      .pipe(
+        ofType(actionsNames.SEARCH_DATA),
+        exhaustMap(({searchStr, type}) => (
+          this.swService.searchPeopleByName(searchStr)
+            .pipe(
+              map((data) => ({
+                type: actionsNames.LOADED_DATA,
+                payload: data
+              }))
+            )
+          )
+        )
+      )
+    )
+  );
 
   constructor(
     private actions$: Actions,

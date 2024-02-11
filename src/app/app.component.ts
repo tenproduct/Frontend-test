@@ -1,13 +1,13 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import { MatSelectChange } from '@angular/material/select';
 import {Store} from '@ngrx/store';
+import { FormControl } from '@angular/forms';
+import { debounce, map, startWith, switchMap} from 'rxjs/operators';
 import * as actions from './store/actions/people.actions';
-import {getAmountOfAllPeople, selectPeople} from './store/selectors/people.selectors';
-import {State} from './store/reducers';
-import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs';
-import {map, startWith, switchMap} from 'rxjs/operators';
-import {MatSelectChange} from '@angular/material/select';
-import {sortByEnum} from './store/reducers/people.reducer';
+import * as selectors from './store/selectors/people.selectors';
+import { State } from './store/reducers';
+import { interval, Observable} from 'rxjs';
+import { sortByEnum, sortedValue } from './helpers/sortFns';
 
 
 @Component({
@@ -18,24 +18,22 @@ import {sortByEnum} from './store/reducers/people.reducer';
 })
 export class AppComponent implements OnInit {
 
-  public title = 'Star Wars App!';
-  public people$ = this.store.select(selectPeople);
-  public counter$ = this.store.select(getAmountOfAllPeople);
+  public title = 'Star Wars Character Search';
+  public people$ = this.store.select(selectors.selectPeople);
+  public counter$ = this.store.select(selectors.getAmountOfAllPeople);
+  public isNextPageAvailable$ = this.store.select(selectors.loadNextSliceData);
+
   public searchControl = new FormControl();
   public filteredOptions: Observable<any[]>;
-  sortedValue = [
-    {value: sortByEnum['A-Z'], viewValue: 'A-Z'},
-    {value: sortByEnum['Z-A'], viewValue: 'Z-A'},
-    {value: sortByEnum.male, viewValue: 'Male'},
-    {value: sortByEnum.female, viewValue: 'Female'}
-  ];
+
+  sortedValue = sortedValue;
 
   constructor(public store: Store<State>) {}
 
   ngOnInit() {
-    console.log(this.sortedValue);
     this.filteredOptions = this.searchControl.valueChanges.pipe(
       startWith(''),
+      debounce(() => interval(300)),
       switchMap((value) => this.people$.pipe(
         map((peopleArray) => {
           return this._filter(value, peopleArray.map(item => item.name));
@@ -44,23 +42,27 @@ export class AppComponent implements OnInit {
     );
 
     this.store.dispatch(actions.loadData());
+  }
 
-    this.people$.subscribe(data => {
-      console.log(data);
-    });
+  public searchInclude(name: string) {
+    return !!this.searchControl.value && name.toLowerCase().includes(this.searchControl.value.toLowerCase());
+  }
+
+  public loadMorePeople() {
+    this.store.dispatch(actions.loadMoreData());
+  }
+
+  public sortByValue(event: MatSelectChange) {
+    const value = (event.value as keyof typeof sortByEnum);
+    this.store.dispatch(actions.sortPeople({sortBy: value}));
+  }
+
+  public searchPeople() {
+    this.store.dispatch(actions.searchPeople({searchStr: this.searchControl.value}));
   }
 
   private _filter(value: string, nameArray: string[]): string[] {
     const filterValue = value.toLowerCase();
-    return nameArray.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
-  }
-
-  loadMorePeople() {
-    this.store.dispatch(actions.loadMoreData());
-  }
-
-  sortByValue(event: MatSelectChange) {
-    const value = (event.value as keyof typeof sortByEnum);
-    this.store.dispatch(actions.sortPeople({sortBy: value}));
+    return nameArray.filter(option => option.toLowerCase().includes(filterValue));
   }
 }

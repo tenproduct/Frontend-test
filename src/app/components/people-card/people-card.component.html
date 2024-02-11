@@ -1,6 +1,15 @@
 <mat-card class="card__container">
-  <img class="card__image" [src]="getDefaultImage()" alt="image">
-  <mat-card-header>
-    <mat-card-title>{{name}}</mat-card-title>
-  </mat-card-header>
+  <ng-container *ngIf="!(isLoading$ | async); else loadingImg">
+    <img class="card__image" [src]="getDefaultImage()" alt="image">
+  </ng-container>
+  <ng-container *ngIf="!(isLoading$ | async); else loadingName">
+    <mat-card-header [textContent]="name"></mat-card-header>
+  </ng-container>
 </mat-card>
+
+<ng-template #loadingImg>
+  <mat-spinner></mat-spinner>
+</ng-template>
+<ng-template #loadingName>
+  <mat-progress-bar mode="query"></mat-progress-bar>
+</ng-template>

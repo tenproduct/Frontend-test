@@ -12,7 +12,7 @@
       </mat-autocomplete>
     </mat-form-field>
     <div>
-      <button mat-stroked-button color="primary" [disabled]="!searchControl.value">Search Character</button>
+      <button mat-stroked-button color="primary" (click)="searchPeople()" [disabled]="!searchControl.value">Search Character</button>
     </div>
   </div>
 
@@ -32,10 +32,19 @@
 
   <div class="result__container">
     <div class="result__list">
-      <app-people-card *ngFor="let item of people$ | async;let index = index" [name]="item.name" [isOdd]="!!(index % 2)"></app-people-card>
+      <app-people-card
+        class="card"
+        *ngFor="let item of people$ | async;let index = index" [name]="item.name" [isOdd]="!!(index % 2)"
+        [class.card-highlighted]="searchInclude(item.name)"
+      >
+      </app-people-card>
     </div>
     <div>
-      <button class="load-more" mat-flat-button color="accent" (click)="loadMorePeople()">Load More</button>
+      <button class="load-more" mat-flat-button color="accent"
+              (click)="loadMorePeople()"
+              [disabled]="!(isNextPageAvailable$ | async).nextPage">
+        Load More
+      </button>
     </div>
   </div>
 </div>
