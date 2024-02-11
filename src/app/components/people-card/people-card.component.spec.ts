@@ -22,4 +22,13 @@ describe('PeopleCardComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display default image based on isOdd', () => {
+    component.isOdd = true;
+    expect(component.getDefaultImage()).toBe('assets/mock-image-1.png');
+
+    component.isOdd = false;
+    expect(component.getDefaultImage()).toBe('assets/mock-image.png');
+  });
+
 });

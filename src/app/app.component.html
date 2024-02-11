@@ -18,7 +18,7 @@
 
   <div class="filter__container">
     <h1 class="filter__title">
-      Showing {{(people$ | async).length}} of {{counter$ | async}}
+      Showing {{(people$ | async)?.length}} of {{counter$ | async}}
     </h1>
     <mat-form-field>
       <mat-label>Sort by</mat-label>
@@ -42,7 +42,7 @@
     <div>
       <button class="load-more" mat-flat-button color="accent"
               (click)="loadMorePeople()"
-              [disabled]="!(isNextPageAvailable$ | async).nextPage">
+              [disabled]="!(isNextPageAvailable$ | async)?.nextPage">
         Load More
       </button>
     </div>

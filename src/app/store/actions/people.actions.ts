@@ -21,4 +21,4 @@ export const sortPeople = createAction(actionsNames.SORT_DATA, props<{sortBy: ke
 export const loadMoreData = createAction(actionsNames.LOAD_MORE_DATA);
 export const loadedMoreData = createAction(actionsNames.LOADED_MORE_DATA, props<{payload: IResponse<IPeople>}>());
 
-export const searchPeople = createAction(actionsNames.SEARCH_DATA, props<{searchStr: keyof typeof sortByEnum}>());
+export const searchPeople = createAction(actionsNames.SEARCH_DATA, props<{searchStr: string}>());
