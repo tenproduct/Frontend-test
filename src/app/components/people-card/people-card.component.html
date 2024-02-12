@@ -1,0 +1,15 @@
+<mat-card class="card__container">
+  <img class="card__image"
+       *ngIf="!(isLoading$ | async); else loadingImg"
+       [src]="defaultImage" alt="image">
+  <mat-card-header
+    *ngIf="!(isLoading$ | async); else loadingName"
+    [textContent]="name"></mat-card-header>
+</mat-card>
+
+<ng-template #loadingImg>
+  <mat-spinner></mat-spinner>
+</ng-template>
+<ng-template #loadingName>
+  <mat-progress-bar mode="query"></mat-progress-bar>
+</ng-template>
