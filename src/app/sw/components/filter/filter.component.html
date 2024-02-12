@@ -1,0 +1,11 @@
+<form [formGroup]="sortForm">
+  <mat-form-field appearance="outline">
+    <mat-label>Sort by</mat-label>
+    <mat-select formControlName="selectedOption">
+      <mat-option value="null"></mat-option>
+      <mat-option *ngFor="let sortOption of sortOptions" [value]="sortOption.value">
+        {{ sortOption.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>

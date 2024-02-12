@@ -1,0 +1,21 @@
+<section id="sw-search">
+  <app-search></app-search>
+</section>
+
+<section id="sw-result">
+  <ng-container *ngIf="(isSearch$ | async); else dataView">
+    <h4>Showing {{ !!(searchList$ | async) ? (searchList$ | async | swSortBy: (sortBy$ | async)).length : 0 }} of {{ searchCount$ | async }}</h4>
+  </ng-container>
+
+  <ng-template #dataView>
+    <h4>Showing {{ !!(data$ | async) ? (data$ | async | swSortBy: (sortBy$ | async)).length : 0 }} of {{ count$ | async }}</h4>
+  </ng-template>
+</section>
+
+<section id="sw-filter">
+  <app-filter></app-filter>
+</section>
+
+<section id="sw-list">
+  <app-list></app-list>
+</section>

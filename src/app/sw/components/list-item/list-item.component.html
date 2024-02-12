@@ -1,0 +1,11 @@
+<mat-card class="d-flex flex-col items-center">
+  <ng-container *ngIf="index === 0 || index % 2 === 0; else evenImg">
+    <img src="assets/mock-image-1.png" alt="odd img" class="img w-100">
+  </ng-container>
+
+  <ng-template #evenImg>
+    <img src="assets/mock-image.png" alt="even img" class="img w-100">
+  </ng-template>
+
+  <h4>{{ item.name }}</h4>
+</mat-card>
