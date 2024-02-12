@@ -1,15 +1,16 @@
 <mat-card>
   <div class="card">
     <mat-card-content>
-      <img class="card__image"
-           [src]="isOdd ? '/assets/mock-image-1.png' : '/assets/mock-image.png'"
-           alt="star-wars-character">
+      <img
+        class="card__image"
+        [src]="isOdd ? '/assets/mock-image-1.png' : '/assets/mock-image.png'"
+        alt="star-wars-character"
+      />
     </mat-card-content>
     <mat-card-footer>
       <mat-card-title>
-        <h2 class="card__title">{{character?.name}}</h2>
+        <h2 class="card__title">{{ character?.name }}</h2>
       </mat-card-title>
     </mat-card-footer>
   </div>
 </mat-card>
-

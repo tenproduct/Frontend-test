@@ -1,13 +1,11 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {CharactersSortComponent} from './characters-sort.component';
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatSelectModule} from "@angular/material/select";
-import {FormsModule} from "@angular/forms";
-import {MockStore, provideMockStore} from "@ngrx/store/testing";
-import {AppState} from "../../state/app.state";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {SortTypeEnum} from "../../core/enums/sort-type-enum";
+import { CharactersSortComponent } from './characters-sort.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SortTypeEnum } from '../../core/enums/sort-type-enum';
 
 describe('CharactersSortComponent', () => {
   let component: CharactersSortComponent;
@@ -20,9 +18,9 @@ describe('CharactersSortComponent', () => {
         BrowserAnimationsModule,
         MatFormFieldModule,
         MatSelectModule,
-        FormsModule],
-    })
-      .compileComponents();
+        FormsModule,
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -35,10 +33,10 @@ describe('CharactersSortComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should emit sort method when onChange method is called',  () => {
-    const sortMethod: keyof typeof  SortTypeEnum = 'ASCENDING';
+  it('should emit sort method when onChange method is called', () => {
+    const sortMethod: keyof typeof SortTypeEnum = 'ASCENDING';
     spyOn(component.changeSort, 'emit');
-    component.onChange({value: sortMethod, source: null});
+    component.onChange({ value: sortMethod, source: null });
     expect(component.changeSort.emit).toHaveBeenCalledWith(sortMethod);
   });
 });

@@ -1,18 +1,23 @@
-import {AppState, initialState} from "./app.state";
-import {selectCharacters, selectNextPage, selectSearchTerm, selectSortMethod, selectTotalCount} from "./app.selectors";
-import {mockCharacters} from "../test/characters.mock";
-import {TestBed} from "@angular/core/testing";
-import {MockStore, provideMockStore} from "@ngrx/store/testing";
+import {
+  selectCharacters,
+  selectNextPage,
+  selectSearchTerm,
+  selectSortMethod,
+  selectTotalCount,
+} from './characters.selectors';
+import { mockCharacters } from '../../test/characters.mock';
+import { TestBed } from '@angular/core/testing';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { CharactersState } from '../../core/models/characters-state.model';
+import { initialCharactersState } from './characters.state';
 
 describe('Selectors', () => {
-  const state: AppState = initialState;
+  const state: CharactersState = initialCharactersState;
   let store: MockStore;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        provideMockStore({initialState}),
-      ],
+      providers: [provideMockStore({ initialState: initialCharactersState })],
     });
     store = TestBed.inject(MockStore);
   });

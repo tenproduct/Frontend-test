@@ -1,11 +1,9 @@
-<mat-toolbar>Star Wars Character Search</mat-toolbar>
-
-<form
-  [formGroup]="form"
-  (submit)="onSearch()">
-<mat-form-field>
-  <mat-label>Search character</mat-label>
-  <input formControlName="search" matInput />
-</mat-form-field>
-<button mat-raised-button color="primary" type="submit">Search Character</button>
+<form [formGroup]="form" (submit)="onSearch()">
+  <mat-form-field>
+    <mat-label>Search character</mat-label>
+    <input formControlName="search" matInput />
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">
+    Search Character
+  </button>
 </form>
