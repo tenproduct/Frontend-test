@@ -25,12 +25,6 @@ export const PeopleReducer = createReducer(
   })),
   on(PeopleActions.loadMoreData, (state) => ({...state, loading: true})),
   on(PeopleActions.loadedMoreData, (state, {payload}) => {
-    let sortedResult = [...payload.results];
-
-    if (state.sortBy) {
-      sortedResult = sortByFn(sortedResult, state.sortBy);
-    }
-
     return {
       ...state,
       nextPage: payload.next,
