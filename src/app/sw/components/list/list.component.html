@@ -1,0 +1,25 @@
+<div class="list d-flex content-center">
+  <ng-container *ngIf="(isSearch$ | async); else dataView">
+    <app-list-item
+      *ngFor="let item of (searchList$ | async | swSortBy: (sortBy$ | async)); let index = index"
+      [item]="item"
+      [index]="index"
+      class="list-item"
+    ></app-list-item>
+  </ng-container>
+
+  <ng-template #dataView>
+    <app-list-item
+      *ngFor="let item of (list$ | async | swSortBy: (sortBy$ | async)); let index = index"
+      [item]="item"
+      [index]="index"
+      class="list-item"
+    ></app-list-item>
+  </ng-template>
+</div>
+
+<div class="d-flex w-100 content-center" *ngIf="isLoading$ | async">
+  <mat-spinner></mat-spinner>
+</div>
+
+<button mat-raised-button color="primary" (click)="onLoadMore()" class="w-100">Load More</button>

@@ -17,7 +17,13 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@sw-models/*": ["src/app/sw/models/*"],
+      "@sw-components/*": ["src/app/sw/components/*"],
+      "@sw-services/*": ["src/app/sw/services/*"],
+      "@sw-utils/*": ["src/app/sw/utils/*"],
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
