@@ -1,0 +1,10 @@
+<mat-form-field>
+  <mat-label>Sort by</mat-label>
+  <mat-select (selectionChange)="onChange($event)">
+    <mat-option
+      *ngFor="let sortMethod of SortTypeEnum | keyvalue"
+      [value]="sortMethod.key"
+      >{{ sortMethod.value }}</mat-option
+    >
+  </mat-select>
+</mat-form-field>

@@ -1,0 +1,10 @@
+<div class="list">
+  <ng-container *ngFor="let character of characters; let isOdd = odd">
+    <div class="list__item">
+      <sw-character-card
+        [character]="character"
+        [isOdd]="isOdd"
+      ></sw-character-card>
+    </div>
+  </ng-container>
+</div>
