@@ -1,6 +1,6 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
-import {Store} from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { FormControl } from '@angular/forms';
 import { debounce, map, startWith, switchMap} from 'rxjs/operators';
 import * as actions from './store/actions/people.actions';
@@ -8,6 +8,7 @@ import * as selectors from './store/selectors/people.selectors';
 import { State } from './store/reducers';
 import { interval, Observable} from 'rxjs';
 import { sortByEnum, sortedValue } from './helpers/sortFns';
+import { IPeople } from './store/state.models';
 
 
 @Component({
@@ -24,9 +25,9 @@ export class AppComponent implements OnInit {
   public isNextPageAvailable$ = this.store.select(selectors.loadNextSliceData);
 
   public searchControl = new FormControl();
-  public filteredOptions: Observable<any[]>;
+  public filteredOptions: Observable<string[]>;
 
-  sortedValue = sortedValue;
+  public sortedValue = sortedValue;
 
   constructor(public store: Store<State>) {}
 
@@ -64,5 +65,9 @@ export class AppComponent implements OnInit {
   private _filter(value: string, nameArray: string[]): string[] {
     const filterValue = value.toLowerCase();
     return nameArray.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+  identify(index: number, value: IPeople) {
+    return value.name;
   }
 }

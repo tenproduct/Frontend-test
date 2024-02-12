@@ -34,7 +34,9 @@
     <div class="result__list">
       <app-people-card
         class="card"
-        *ngFor="let item of people$ | async;let index = index" [name]="item.name" [isOdd]="!!(index % 2)"
+        *ngFor="let item of people$ | async; trackBy: identify; trackBy: identify;let index = index"
+        [name]="item.name"
+        [isOdd]="!!(index % 2)"
         [class.card-highlighted]="searchInclude(item.name)"
       >
       </app-people-card>

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {actionsNames} from '../actions/people.actions';
 import {SwapiService} from '../../services/swapi.service';
-import {catchError, exhaustMap, map, withLatestFrom} from 'rxjs/operators';
+import {catchError, exhaustMap, map, tap, withLatestFrom} from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
 import * as selectors from '../selectors/people.selectors';
 import { HttpClient} from '@angular/common/http';
@@ -73,6 +73,5 @@ export class PeopleEffects {
     private swService: SwapiService,
     private http: HttpClient,
     private store: Store<State>
-  ) {
-  }
+  ) {}
 }

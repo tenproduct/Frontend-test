@@ -8,19 +8,11 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './store/reducers';
 import { HttpClientModule } from '@angular/common/http';
 import { PeopleCardComponent } from './components/people-card/people-card.component';
-import { MatGridListModule } from '@angular/material/grid-list';
-import {MatCardModule} from "@angular/material/card";
-import {EffectsModule} from "@ngrx/effects";
-import {PeopleEffects} from "./store/effects/people.effects";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatInputModule} from "@angular/material/input";
-import {ReactiveFormsModule} from "@angular/forms";
-import {MatAutocompleteModule} from "@angular/material/autocomplete";
-import {MatButtonModule} from "@angular/material/button";
-import {MatListModule} from "@angular/material/list";
-import {MatSelectModule} from "@angular/material/select";
-import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {MatProgressBarModule} from "@angular/material/progress-bar";
+import { EffectsModule } from '@ngrx/effects';
+import { PeopleEffects } from './store/effects/people.effects';
+import { MaterialModule } from './core/material.module';
+import { URL_CONFIG_TOKEN } from './injections_token';
+
 
 @NgModule({
   declarations: [
@@ -40,19 +32,14 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
       },
     }),
     EffectsModule.forRoot([PeopleEffects]),
-    MatGridListModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatAutocompleteModule,
-    MatButtonModule,
-    MatListModule,
-    MatSelectModule,
-    MatProgressSpinnerModule,
-    MatProgressBarModule,
+    MaterialModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: URL_CONFIG_TOKEN,
+      useValue: 'assets/config.json'
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
